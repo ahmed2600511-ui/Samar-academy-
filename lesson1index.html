@@ -1,0 +1,3631 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مغامرة العلوم الكبرى - الدرس الأول: التفاعلات بين الغلاف الحيوي والغلاف المائي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0a1628;
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent-gold: #fbbf24;
+            --accent-orange: #f97316;
+            --accent-cyan: #06b6d4;
+            --biosphere: #059669;
+            --hydrosphere: #0369a1;
+            --atmosphere: #475569;
+            --lithosphere: #78716c;
+            --success: #22c55e;
+            --error: #ef4444;
+            --warning: #eab308;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-800: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Noto Naskh Arabic', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, #1e1b4b 100%);
+            min-height: 100vh;
+            color: var(--gray-800);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gold);
+            border-radius: 6px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 3px solid var(--accent-gold);
+            padding: 0.75rem 2rem;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        .nav-title {
+            color: var(--white);
+        }
+
+        .nav-title h1 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+
+        .nav-title p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .nav-progress-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-orange));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .nav-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-dot.active {
+            background: var(--accent-gold);
+            transform: scale(1.3);
+            box-shadow: 0 0 15px var(--accent-gold);
+        }
+
+        .nav-dot.completed {
+            background: var(--success);
+        }
+
+        .nav-dot::after {
+            content: attr(data-title);
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        .nav-dot:hover::after {
+            opacity: 1;
+            bottom: 30px;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 7rem 1.5rem 2rem;
+        }
+
+        /* Section Management */
+        .section {
+            display: none;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+            color: var(--primary-dark);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title::before {
+            content: '🔬';
+            position: absolute;
+            right: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-title::after {
+            content: '🌍';
+            position: absolute;
+            left: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            animation: rotate 20s linear infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 1.6rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .hero-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            border-radius: 30px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(251,191,36,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .hero-card h2 {
+            color: var(--accent-gold);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .hero-card p {
+            color: var(--white);
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        /* Quick Access Grid */
+        .quick-access-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .access-card {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .access-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .access-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2);
+        }
+
+        .access-card:hover::before {
+            opacity: 1;
+        }
+
+        .access-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .access-card:hover .access-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .access-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .access-card p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .access-card .badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent-orange);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Content Cards */
+        .content-wrapper {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid var(--gray-200);
+        }
+
+        .section-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent-orange), #ea580c);
+            color: var(--white);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+        }
+
+        .section-title-group h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .section-title-group p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        /* Adventure Box */
+        .adventure-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 3px solid var(--accent-gold);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .adventure-box::before {
+            content: '🚀';
+            position: absolute;
+            top: -20px;
+            right: 30px;
+            font-size: 4rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .adventure-box::after {
+            content: '✨';
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            font-size: 2rem;
+            opacity: 0.5;
+        }
+
+        .adventure-box h3 {
+            color: #92400e;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            padding-right: 4rem;
+        }
+
+        .adventure-box p {
+            color: #78350f;
+            font-size: 1.15rem;
+            line-height: 2;
+        }
+
+        .highlight-terms {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            margin: 0.25rem;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .highlight-terms:hover {
+            transform: scale(1.05);
+        }
+
+        /* Info Box Variants */
+        .info-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .info-box.icon-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+        }
+
+        .info-box.tip-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-right: 5px solid var(--primary-light);
+        }
+
+        .info-box.warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-right: 5px solid var(--warning);
+        }
+
+        .info-box.success-box {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border-right: 5px solid var(--success);
+        }
+
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .info-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Spheres Section */
+        .spheres-container {
+            margin: 3rem 0;
+        }
+
+        .spheres-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .sphere-card {
+            border-radius: 25px;
+            padding: 2.5rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+            cursor: pointer;
+            min-height: 280px;
+        }
+
+        .sphere-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .sphere-card.biosphere {
+            background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%);
+        }
+
+        .sphere-card.hydrosphere {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #075985 100%);
+        }
+
+        .sphere-card.atmosphere {
+            background: linear-gradient(135deg, #475569 0%, #334155 50%, #1e293b 100%);
+        }
+
+        .sphere-card.lithosphere {
+            background: linear-gradient(135deg, #78716c 0%, #57534e 50%, #44403c 100%);
+        }
+
+        .sphere-bg-icon {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            font-size: 12rem;
+            opacity: 0.1;
+            animation: rotate 60s linear infinite;
+        }
+
+        .sphere-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .sphere-icon-main {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .sphere-title-group h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .sphere-title-group .english {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .sphere-content {
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            position: relative;
+        }
+
+        .sphere-content h4 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            opacity: 0.9;
+        }
+
+        .sphere-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .sphere-item {
+            background: rgba(255,255,255,0.15);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .sphere-fact {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Subsection Styling */
+        .subsection {
+            margin: 3rem 0;
+        }
+
+        .subsection-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .subsection-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .subsection-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: var(--gray-50);
+            border: 2px solid var(--gray-200);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .info-card h4 {
+            font-size: 1.2rem;
+            color: var(--gray-800);
+        }
+
+        .info-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Water Cycle */
+        .cycle-section {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .cycle-title {
+            text-align: center;
+            color: #0369a1;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cycle-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .cycle-step {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 140px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .cycle-step:hover {
+            transform: scale(1.05);
+        }
+
+        .cycle-step .step-number {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .cycle-step .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .cycle-step h4 {
+            color: #0369a1;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cycle-step p {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .cycle-arrow {
+            font-size: 2rem;
+            color: #0369a1;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Quiz Sections */
+        .quiz-container {
+            background: var(--white);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .quiz-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .quiz-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-header p {
+            opacity: 0.9;
+        }
+
+        .quiz-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quiz-body {
+            padding: 2.5rem;
+        }
+
+        .question-block {
+            background: var(--gray-50);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-right: 5px solid var(--accent-orange);
+            transition: all 0.3s;
+        }
+
+        .question-block:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .question-header-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .q-number {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--accent-orange), #ea580c);
+            color: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .question-text {
+            flex: 1;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .question-type {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* Answer Buttons */
+        .answer-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-option {
+            padding: 0.875rem 2rem;
+            border: 2px solid;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-option.correct {
+            border-color: var(--success);
+            color: var(--success);
+            background: transparent;
+        }
+
+        .btn-option.correct:hover, .btn-option.correct.selected {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-option.wrong {
+            border-color: var(--error);
+            color: var(--error);
+            background: transparent;
+        }
+
+        .btn-option.wrong:hover, .btn-option.wrong.selected {
+            background: var(--error);
+            color: var(--white);
+        }
+
+        /* MCQ Options */
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .mcq-option {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 15px;
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mcq-option:hover {
+            border-color: var(--primary-light);
+            background: #eff6ff;
+        }
+
+        .mcq-option.selected {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .mcq-option.correct-answer {
+            border-color: var(--success);
+            background: #dcfce7;
+        }
+
+        .mcq-option.wrong-answer {
+            border-color: var(--error);
+            background: #fee2e2;
+        }
+
+        .opt-letter {
+            width: 35px;
+            height: 35px;
+            background: var(--gray-200);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .mcq-option.selected .opt-letter,
+        .mcq-option:hover .opt-letter {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Fill in Blank */
+        .fill-question {
+            font-size: 1.15rem;
+            line-height: 2.5;
+        }
+
+        .blank-input {
+            display: inline-block;
+            min-width: 120px;
+            border: none;
+            border-bottom: 3px dashed var(--primary);
+            background: transparent;
+            font-family: inherit;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--primary);
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            margin: 0 0.25rem;
+            transition: all 0.3s;
+        }
+
+        .blank-input:focus {
+            outline: none;
+            border-bottom-style: solid;
+            background: #eff6ff;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .blank-input.correct {
+            border-color: var(--success);
+            color: var(--success);
+            background: #dcfce7;
+        }
+
+        .blank-input.wrong {
+            border-color: var(--error);
+            color: var(--error);
+            background: #fee2e2;
+        }
+
+        /* Matching Exercise */
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .matching-column h4 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .matching-item {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .matching-item:hover {
+            border-color: var(--primary-light);
+            transform: translateX(-5px);
+        }
+
+        .matching-item.selected {
+            border-color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .matching-item.matched {
+            border-color: var(--success);
+            background: #dcfce7;
+        }
+
+        /* Feedback */
+        .feedback-box {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            border-radius: 15px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback-box.show {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feedback-box.success {
+            background: #dcfce7;
+            border: 2px solid var(--success);
+            color: #166534;
+        }
+
+        .feedback-box.error {
+            background: #fee2e2;
+            border: 2px solid var(--error);
+            color: #991b1b;
+        }
+
+        .feedback-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            gap: 1rem;
+        }
+
+        .btn-nav {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 15px;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-prev {
+            background: var(--gray-200);
+            color: var(--gray-800);
+        }
+
+        .btn-prev:hover {
+            background: var(--gray-800);
+            color: var(--white);
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+            color: var(--primary-dark);
+        }
+
+        .btn-next:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
+        }
+
+        .btn-check {
+            background: linear-gradient(135deg, var(--success), #16a34a);
+            color: var(--white);
+            margin: 2rem auto;
+            display: block;
+        }
+
+        .btn-check:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+        }
+
+        /* Term Cards */
+        .term-card {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border-right: 5px solid #9333ea;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .term-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(147, 51, 234, 0.1));
+        }
+
+        .term-header {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .term-icon-box {
+            width: 60px;
+            height: 60px;
+            background: #9333ea;
+            color: var(--white);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .term-title-group h4 {
+            font-size: 1.4rem;
+            color: #581c87;
+            margin-bottom: 0.25rem;
+        }
+
+        .term-title-group .term-en {
+            color: #7c3aed;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .term-definition {
+            color: #6b21a8;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Results Section */
+        .results-hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(251,191,36,0.1) 0%, transparent 60%);
+        }
+
+        .trophy-animation {
+            font-size: 6rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .results-title {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .results-subtitle {
+            color: var(--white);
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            background: conic-gradient(var(--accent-gold) calc(var(--score-percent) * 1%), rgba(255,255,255,0.1) 0);
+            border-radius: 50%;
+            margin: 2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .score-circle::before {
+            content: '';
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .score-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .score-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+        }
+
+        .score-label {
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .stars-container {
+            font-size: 2.5rem;
+            margin: 1.5rem 0;
+            letter-spacing: 0.5rem;
+        }
+
+        .achievement-list {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .achievement-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .achievement-item.unlocked {
+            background: rgba(251, 191, 36, 0.15);
+            border-color: var(--accent-gold);
+        }
+
+        .achievement-item.locked {
+            opacity: 0.5;
+            filter: grayscale(1);
+        }
+
+        .achievement-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gold);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .achievement-info {
+            flex: 1;
+            text-align: right;
+        }
+
+        .achievement-info h4 {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .achievement-info p {
+            color: var(--white);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-title::before,
+            .hero-title::after {
+                display: none;
+            }
+            .spheres-grid {
+                grid-template-columns: 1fr;
+            }
+            .mcq-grid {
+                grid-template-columns: 1fr;
+            }
+            .matching-container {
+                grid-template-columns: 1fr;
+            }
+            .nav-progress-container {
+                display: none;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav-container, .nav-buttons, .btn-check {
+                display: none;
+            }
+            .section {
+                display: block !important;
+                page-break-after: always;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-spinner {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(251, 191, 36, 0.3);
+            border-top-color: var(--accent-gold);
+            border-radius: 50%;
+            animation: rotate 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        .loader-text {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Tooltip */
+        .tooltip-trigger {
+            position: relative;
+            cursor: help;
+            border-bottom: 2px dotted var(--accent-gold);
+        }
+
+        .tooltip-content {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            z-index: 100;
+            width: max-content;
+            max-width: 250px;
+            white-space: normal;
+        }
+
+        .tooltip-trigger:hover .tooltip-content {
+            opacity: 1;
+            bottom: 120%;
+        }
+
+        /* Image Placeholder */
+        .img-placeholder {
+            background: linear-gradient(135deg, var(--gray-200), var(--gray-100));
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            border: 3px dashed var(--gray-200);
+        }
+
+        .img-placeholder i {
+            font-size: 4rem;
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+        }
+
+        .img-placeholder p {
+            color: #64748b;
+        }
+
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.25rem;
+            text-align: right;
+            font-weight: 700;
+        }
+
+        .data-table td {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--gray-200);
+            background: var(--white);
+        }
+
+        .data-table tr:hover td {
+            background: var(--gray-50);
+        }
+
+        /* Comparison Box */
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-item {
+            background: var(--gray-50);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .comparison-item.vs::after {
+            content: 'VS';
+            position: absolute;
+            top: 50%;
+            left: -2rem;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: var(--primary-dark);
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 2rem 0;
+        }
+
+        .accordion-item {
+            background: var(--white);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border: 2px solid var(--gray-200);
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: var(--gray-50);
+        }
+
+        .accordion-header h4 {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+        }
+
+        .accordion-item.active .accordion-body {
+            max-height: 500px;
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem 1.5rem;
+            color: #64748b;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">جاري تحميل مغامرة العلوم... 🔬</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-brand">
+                <div class="nav-logo">🎓</div>
+                <div class="nav-title">
+                    <h1>مغامرة العلوم الكبرى</h1>
+                    <p>الصف الخامس | الفصل الثاني 2026</p>
+                </div>
+            </div>
+            <div class="nav-progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="nav-dots" id="navDots"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        
+        <!-- Section 0: Home -->
+        <section class="section active" id="section-0">
+            <div class="hero-section">
+                <div class="hero-badge">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>الصف الخامس الابتدائي | الفصل الدراسي الثاني | سلاح التلميذ 2026</span>
+                </div>
+                
+                <h1 class="hero-title">مغامرة العلوم الكبرى!</h1>
+                <p class="hero-subtitle">الدرس الأول: التفاعلات بين الغلاف الحيوي والغلاف المائي</p>
+                
+                <div class="hero-card">
+                    <h2>🎯 الوحدة الثالثة: الموارد الطبيعية على سطح الأرض</h2>
+                    <p>رحلة استكشافية مثيرة لاكتشاف أسرار كوكب الأرض ونظامه البيئي المتكامل، والتعرف على التفاعلات المعقدة بين مكوناته المختلفة</p>
+                </div>
+
+                <div class="quick-access-grid">
+                    <div class="access-card" onclick="goToSection(1)">
+                        <span class="badge">الشرح</span>
+                        <div class="access-icon">📖</div>
+                        <h3>الشرح التفصيلي</h3>
+                        <p>شرح معمّق + أمثلة + تطبيقات</p>
+                    </div>
+                    <div class="access-card" onclick="goToSection(2)">
+                        <span class="badge">10 أسئلة</span>
+                        <div class="access-icon">✅</div>
+                        <h3>صح أم خطأ</h3>
+                        <p>اختبر فهمك الأساسي</p>
+                    </div>
+                    <div class="access-card" onclick="goToSection(3)">
+                        <span class="badge">7 أسئلة</span>
+                        <div class="access-icon">📝</div>
+                        <h3>اختر الإجابة</h3>
+                        <p>اختبار متعدد الخيارات</p>
+                    </div>
+                    <div class="access-card" onclick="goToSection(4)">
+                        <span class="badge">5 أسئلة</span>
+                        <div class="access-icon">✏️</div>
+                        <h3>أكمل الفراغات</h3>
+                        <p>اكمل وعلّل</p>
+                    </div>
+                    <div class="access-card" onclick="goToSection(5)">
+                        <span class="badge">5 أسئلة</span>
+                        <div class="access-icon">🧪</div>
+                        <h3>المصطلحات</h3>
+                        <p>عرف المفاهيم العلمية</p>
+                    </div>
+                    <div class="access-card" onclick="goToSection(6)">
+                        <span class="badge">3 أسئلة</span>
+                        <div class="access-icon">🧩</div>
+                        <h3>صحّح العلاقة</h3>
+                        <p>ربط المفاهيم</p>
+                    </div>
+                    <div class="access-card" onclick="goToSection(11)">
+                        <div class="access-icon">🏆</div>
+                        <h3>الإنجازات</h3>
+                        <p>شاهد تقدمك</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Detailed Explanation -->
+        <section class="section" id="section-1">
+            <div class="content-wrapper">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <div class="section-title-group">
+                        <h2>الشرح التفصيلي</h2>
+                        <p>أغلفة كوكب الأرض الأربعة والتفاعلات بينها</p>
+                    </div>
+                </div>
+
+                <!-- Introduction -->
+                <div class="adventure-box">
+                    <h3>🚀 انطلق في مغامرتك الكونية يا بطل!</h3>
+                    <p>تخيّل أنك رائد فضاء عائد من رحلة طويلة استمرت سنوات إلى <strong>المريخ الأحمر الجاف</strong>... وفجأة، تلمع أمامك كرة زرقاء رائعة في الظلام الفضائي تتلألأ كالجوهرة النادرة! إنها <strong>كوكب الأرض</strong> - كوكب الحياة والماء الوحيد في نظامنا الشمسي الذي نعرفه حتى الآن!</p>
+                    <p style="margin-top: 1rem;">في هذه الرحلة المثيرة، سنتعرف على <span class="highlight-terms">🌱 الغلاف الحيوي</span> <span class="highlight-terms">💧 الغلاف المائي</span> <span class="highlight-terms">☁️ الغلاف الجوي</span> <span class="highlight-terms">⛰️ الغلاف الأرضي</span> وكيف تتفاعل هذه الأغلفة مع بعضها البعض لتخلق بيئة صالحة للحياة.</p>
+                </div>
+
+                <!-- The Four Spheres -->
+                <div class="spheres-container">
+                    <div class="info-box icon-box">
+                        <div class="info-icon">🌍</div>
+                        <div class="info-content">
+                            <h4>ما هي أغلفة الأرض الأربعة؟</h4>
+                            <p>يقسم العلماء كوكب الأرض إلى <strong>أربعة أغلفة رئيسية</strong>، كل منها يمثل نظاماً بيئياً مستقلاً yet مترابطاً مع الآخرين. هذه التقسيمة تساعدنا على فهم كيفية عمل كوكبنا بشكل أفضل.</p>
+                        </div>
+                    </div>
+
+                    <div class="spheres-grid">
+                        <!-- Biosphere -->
+                        <div class="sphere-card biosphere" onclick="toggleDetails('bio')">
+                            <div class="sphere-bg-icon">🌱</div>
+                            <div class="sphere-header">
+                                <div class="sphere-icon-main">🌿</div>
+                                <div class="sphere-title-group">
+                                    <h3>الغلاف الحيوي</h3>
+                                    <div class="english">Biosphere</div>
+                                </div>
+                            </div>
+                            <p>جميع الكائنات الحية على سطح الأرض وفي محيطاتها</p>
+                            <div class="sphere-content">
+                                <h4>🦋 يشمل:</h4>
+                                <div class="sphere-items">
+                                    <span class="sphere-item">🧑‍🤝‍🧑 الإنسان</span>
+                                    <span class="sphere-item">🦁 الحيوانات</span>
+                                    <span class="sphere-item">🌳 النباتات</span>
+                                    <span class="sphere-item">🦠 الكائنات الدقيقة</span>
+                                    <span class="sphere-item">🍄 الفطريات</span>
+                                </div>
+                                <div class="sphere-fact">
+                                    <span>💡</span>
+                                    <span>يمتد من أعماق المحيطات حتى قمم الجبال!</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hydrosphere -->
+                        <div class="sphere-card hydrosphere" onclick="toggleDetails('hydro')">
+                            <div class="sphere-bg-icon">🌊</div>
+                            <div class="sphere-header">
+                                <div class="sphere-icon-main">💧</div>
+                                <div class="sphere-title-group">
+                                    <h3>الغلاف المائي</h3>
+                                    <div class="english">Hydrosphere</div>
+                                </div>
+                            </div>
+                            <p>جميع المياه الموجودة على الأرض بمختلف حالاتها</p>
+                            <div class="sphere-content">
+                                <h4>🌊 يشمل:</h4>
+                                <div class="sphere-items">
+                                    <span class="sphere-item">🌊 البحار</span>
+                                    <span class="sphere-item">🏞️ الأنهار</span>
+                                    <span class="sphere-item">🚣 البحيرات</span>
+                                    <span class="sphere-item">💎 المياه الجوفية</span>
+                                    <span class="sphere-item">🧊 الجليد</span>
+                                    <span class="sphere-item">☁️ بخار الماء</span>
+                                </div>
+                                <div class="sphere-fact">
+                                    <span>📊</span>
+                                    <span>يغطي 71% من سطح الأرض!</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Atmosphere -->
+                        <div class="sphere-card atmosphere" onclick="toggleDetails('atmo')">
+                            <div class="sphere-bg-icon">☁️</div>
+                            <div class="sphere-header">
+                                <div class="sphere-icon-main">🌤️</div>
+                                <div class="sphere-title-group">
+                                    <h3>الغلاف الجوي</h3>
+                                    <div class="english">Atmosphere</div>
+                                </div>
+                            </div>
+                            <p>طبقة الغازات المحيطة بالأرض التي تحميها</p>
+                            <div class="sphere-content">
+                                <h4>🌬️ يشمل:</h4>
+                                <div class="sphere-items">
+                                    <span class="sphere-item">🟢 أكسجين 21%</span>
+                                    <span class="sphere-item">🔵 نيتروجين 78%</span>
+                                    <span class="sphere-item">⚫ ثاني أكسيد الكربون</span>
+                                    <span class="sphere-item">⚪ غازات نبيلة</span>
+                                    <span class="sphere-item">💧 بخار الماء</span>
+                                </div>
+                                <div class="sphere-fact">
+                                    <span>🛡️</span>
+                                    <span>يحمي الأرض من الإشعاعات الضارة!</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Lithosphere -->
+                        <div class="sphere-card lithosphere" onclick="toggleDetails('litho')">
+                            <div class="sphere-bg-icon">⛰️</div>
+                            <div class="sphere-header">
+                                <div class="sphere-icon-main">🪨</div>
+                                <div class="sphere-title-group">
+                                    <h3>الغلاف الأرضي</h3>
+                                    <div class="english">Lithosphere</div>
+                                </div>
+                            </div>
+                            <p>القشرة الصخرية للأرض الصلبة</p>
+                            <div class="sphere-content">
+                                <h4>🗻 يشمل:</h4>
+                                <div class="sphere-items">
+                                    <span class="sphere-item">⛰️ الجبال</span>
+                                    <span class="sphere-item">🏜️ الرمال</span>
+                                    <span class="sphere-item">🧱 الصخور</span>
+                                    <span class="sphere-item">🌱 التربة</span>
+                                    <span class="sphere-item">💎 المعادن</span>
+                                </div>
+                                <div class="sphere-fact">
+                                    <span>🔥</span>
+                                    <span>يصل سمكه إلى 100 كم في بعض المناطق!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Importance of Water -->
+                <div class="subsection">
+                    <div class="subsection-header">
+                        <div class="subsection-icon" style="background: #dbeafe; color: #0369a1;">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h3 class="subsection-title" style="color: #0369a1;">لماذا يحتاج الغلاف الحيوي للغلاف المائي؟</h3>
+                    </div>
+
+                    <div class="adventure-box" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); border-color: #0284c7;">
+                        <h3 style="color: #0c4a6e;">🌊 قود الحياة السحري!</h3>
+                        <p style="color: #075985;">تخيّل أن <strong>الكائنات الحية = جيش البطولة</strong>، و<strong>قودها العيش السحري = الماء!</strong> بدونه، تتوقف الحياة تماماً على كوكب الأرض. الماء هو العنصر الأساسي الذي يميز كوكبنا عن باقي الكواكب المعروفة.</p>
+                    </div>
+
+                    <!-- Three Main Reasons -->
+                    <div style="margin: 2rem 0;">
+                        <h4 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.3rem;">🎯 ثلاثة أسباب رئيسية:</h4>
+                        
+                        <!-- Reason 1 -->
+                        <div class="info-box success-box" style="margin: 1.5rem 0;">
+                            <div class="info-icon" style="background: #22c55e; color: white;">1</div>
+                            <div class="info-content">
+                                <h4 style="color: #166534;">أولاً: البقاء والنمو</h4>
+                                <p style="color: #166534;">الماء ضروري لجميع العمليات الحيوية في الكائنات الحية</p>
+                            </div>
+                        </div>
+
+                        <div class="cards-grid">
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <div class="info-card-icon" style="background: #dbeafe; color: #0369a1;">🐟</div>
+                                    <h4>موطن الكائنات البحرية</h4>
+                                </div>
+                                <p>تعيش الأسماك والطحالب والشعاب المرجانية في الماء، وهو موئلها الطبيعي الذي توجد فيه جميع احتياجاتها من غذاء وأكسجين وprotection.</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <div class="info-card-icon" style="background: #fef3c7; color: #92400e;">🥤</div>
+                                    <h4>شرب الإنسان والحيوان</h4>
+                                </div>
+                                <p>جسم الإنسان يتكون من <strong>60-70% ماء</strong>! بدون شرب الماء، يتعرض الإنسان للجفاف الذي قد يؤدي إلى الوفاة في غضون أيام.</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <div class="info-card-icon" style="background: #dcfce7; color: #166534;">🌳</div>
+                                    <h4>البناء الضوئي للنبات</h4>
+                                </div>
+                                <p>النباتات تحتاج الماء + ضوء الشمس + ثاني أكسيد الكربون لإنتاج الغذاء (الجلوكوز) وإطلاق الأكسجين.</p>
+                            </div>
+                        </div>
+
+                        <!-- Reason 2 -->
+                        <div class="info-box tip-box" style="margin: 2.5rem 0 1.5rem;">
+                            <div class="info-icon" style="background: #3b82f6; color: white;">2</div>
+                            <div class="info-content">
+                                <h4 style="color: #1e40af;">ثانياً: الحفاظ على الصحة</h4>
+                                <p style="color: #1e40af;">الماء يلعب دوراً أساسياً في النظافة والوقاية من الأمراض</p>
+                            </div>
+                        </div>
+
+                        <div class="cards-grid">
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <div class="info-card-icon" style="background: #e0f2fe; color: #0369a1;">🧼</div>
+                                    <h4>تنظيف البيئة</h4>
+                                </div>
+                                <p>تنظيف المنازل والمدارس والمستشفيات بالماء يقضي على الجراثيم والفيروسات الضارة.</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <div class="info-card-icon" style="background: #fce7f3; color: #be185d;">🍳</div>
+                                    <h4>إعداد الطعام</h4>
+                                </div>
+                                <p>الطهي بالماء المغلي يقتل البكتيريا الضارة في الطعام، مما يحمينا من التسمم الغذائي.</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <div class="info-card-icon" style="background: #ede9fe; color: #7c3aed;">🏭</div>
+                                    <h4>الاستخدامات الصناعية</h4>
+                                </div>
+                                <p>تنظيف المعدات الطبية والجراحية بالماء المعقم يمنع انتشار العدوى في المستشفيات.</p>
+                            </div>
+                        </div>
+
+                        <!-- Reason 3 -->
+                        <div class="info-box warning-box" style="margin: 2.5rem 0 1.5rem;">
+                            <div class="info-icon" style="background: #eab308; color: white;">3</div>
+                            <div class="info-content">
+                                <h4 style="color: #854d0e;">ثالثاً: الأنشطة الاقتصادية</h4>
+                                <p style="color: #854d0e;">الماء محرك اقتصادي مهم للعديد من الصناعات</p>
+                            </div>
+                        </div>
+
+                        <div class="cards-grid">
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <div class="info-card-icon" style="background: #fee2e2; color: #dc2626;">⚓</div>
+                                    <h4>النقل البحري</h4>
+                                </div>
+                                <p>نقل البضائع بين القارات، سفر الركاب، السياحة البحرية، وصيد الأسماك.</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <div class="info-card-icon" style="background: #f3e8ff; color: #9333ea;">🏭</div>
+                                    <h4>الصناعة</h4>
+                                </div>
+                                <p>تبريد المحركات، عمليات التصنيع، توليد الكهرباء في المحطات البخارية.</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <div class="info-card-icon" style="background: #dcfce7; color: #16a34a;">🌾</div>
+                                    <h4>الزراعة</h4>
+                                </div>
+                                <p>ري المزروعات، تربية الأسماك في المزارع السمكية، الزراعة المائية (Hydroponics).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Water States -->
+                <div class="subsection">
+                    <div class="subsection-header">
+                        <div class="subsection-icon" style="background: #fee2e2; color: #dc2626;">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3 class="subsection-title" style="color: #dc2626;">حالات الماء ومصادره</h3>
+                    </div>
+
+                    <div class="info-box icon-box" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
+                        <div class="info-icon">🧪</div>
+                        <div class="info-content">
+                            <h4>السؤال الكوني: الماء لا يختفي أبداً!</h4>
+                            <p>كيف يمكن للأنهار أن تصبّ في البحر طوال الوقت دون أن يمتلئ؟ وكيف تتساقط السحب مطراً دون أن تنفد؟</p>
+                        </div>
+                    </div>
+
+                    <div class="adventure-box">
+                        <h3>⚗️ لغز عبقري يحيّر العقول!</h3>
+                        <p>الأنهار تصبّ في البحر طوال اليوم... والشمس تبخّر الماء طوال الوقت... <strong>فأين المطر؟!</strong></p>
+                        <p style="margin-top: 1rem;">🌍 <strong>الحقيقة العلمية:</strong> كمية الماء على الأرض <span class="highlight-terms">ثابتة لا تتغيّر</span> — فقط <span class="highlight-terms">حالته</span> تتغيّر من صلب إلى سائل إلى غاز في دورة endlessly تُسمى <strong>دورة الماء</strong>!</p>
+                    </div>
+
+                    <!-- Three States -->
+                    <h4 style="margin: 2rem 0 1rem; color: var(--primary);">🎭 الماء الممثل العبقري — 3 أزياء مختلفة!</h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div class="sphere-card" style="background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);">
+                            <div style="text-align: center; font-size: 4rem; margin-bottom: 1rem;">☁️</div>
+                            <h3 style="text-align: center; color: var(--accent-gold); margin-bottom: 0.5rem;">غاز</h3>
+                            <div style="background: rgba(255,255,255,0.2); padding: 0.5rem; border-radius: 10px; text-align: center; margin-bottom: 1rem;">
+                                <small>التبخّر ← حرارة الشمس</small>
+                            </div>
+                            <p style="text-align: center;">بخار الماء يرتفع من المحيطات والبحيرات إلى الغلاف الجوي</p>
+                        </div>
+
+                        <div class="sphere-card" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
+                            <div style="text-align: center; font-size: 4rem; margin-bottom: 1rem;">💧</div>
+                            <h3 style="text-align: center; color: var(--accent-gold); margin-bottom: 0.5rem;">سائل</h3>
+                            <div style="background: rgba(255,255,255,0.2); padding: 0.5rem; border-radius: 10px; text-align: center; margin-bottom: 1rem;">
+                                <small>الحالة الطبيعية</small>
+                            </div>
+                            <p style="text-align: center;">الماء في الأنهار والبحار والبحيرات والمياه الجوفية</p>
+                        </div>
+
+                        <div class="sphere-card" style="background: linear-gradient(135deg, #475569 0%, #334155 100%);">
+                            <div style="text-align: center; font-size: 4rem; margin-bottom: 1rem;">🧊</div>
+                            <h3 style="text-align: center; color: var(--accent-gold); margin-bottom: 0.5rem;">صلب</h3>
+                            <div style="background: rgba(255,255,255,0.2); padding: 0.5rem; border-radius: 10px; text-align: center; margin-bottom: 1rem;">
+                                <small>التجمّد ← درجات الحرارة المنخفضة</small>
+                            </div>
+                            <p style="text-align: center;">الثلوج والأنهار الجليدية في القطبين وقمم الجبال</p>
+                        </div>
+                    </div>
+
+                    <!-- Water Cycle -->
+                    <div class="cycle-section">
+                        <h3 class="cycle-title">🔄 دورة الماء في الطبيعة — رحلة لا تنتهي أبداً!</h3>
+                        <div class="cycle-container">
+                            <div class="cycle-step">
+                                <div class="step-number">1</div>
+                                <div class="icon">☀️</div>
+                                <h4>التسخين</h4>
+                                <p>تسخين المياه</p>
+                            </div>
+                            <div class="cycle-arrow">←</div>
+                            <div class="cycle-step">
+                                <div class="step-number">2</div>
+                                <div class="icon">☁️</div>
+                                <h4>التبخّر</h4>
+                                <p>بخار يرتفع</p>
+                            </div>
+                            <div class="cycle-arrow">←</div>
+                            <div class="cycle-step">
+                                <div class="step-number">3</div>
+                                <div class="icon">🌧️</div>
+                                <h4>التكاثف</h4>
+                                <p>يتبّرد ويتكاثف</p>
+                            </div>
+                            <div class="cycle-arrow">←</div>
+                            <div class="cycle-step">
+                                <div class="step-number">4</div>
+                                <div class="icon">⛈️</div>
+                                <h4>الهطول</h4>
+                                <p>يسقط مطراً</p>
+                            </div>
+                            <div class="cycle-arrow">←</div>
+                            <div class="cycle-step">
+                                <div class="step-number">5</div>
+                                <div class="icon">🏔️</div>
+                                <h4>التجمّع</h4>
+                                <p>يتجمّع في أنهار</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Water Components -->
+                    <h4 style="margin: 2rem 0 1rem; color: var(--primary);">🗺️ مكوّنات الغلاف المائي — أين يختبئ الماء؟</h4>
+                    
+                    <div class="spheres-grid" style="grid-template-columns: repeat(2, 1fr);">
+                        <div class="sphere-card hydrosphere" style="min-height: auto;">
+                            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                                <div style="font-size: 3rem;">🏔️</div>
+                                <div>
+                                    <h3 style="margin-bottom: 0.5rem;">الأنهار</h3>
+                                    <p style="opacity: 0.9; margin-bottom: 0.75rem;">محاطة باليابسة من جميع الجهات، تكون عذبة أو مالحة</p>
+                                    <span style="background: rgba(255,255,255,0.2); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem;">💎 معظمها عذبة</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sphere-card biosphere" style="background: linear-gradient(135deg, #059669 0%, #047857 100%); min-height: auto;">
+                            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                                <div style="font-size: 3rem;">🌊</div>
+                                <div>
+                                    <h3 style="margin-bottom: 0.5rem;">البحار</h3>
+                                    <p style="opacity: 0.9; margin-bottom: 0.75rem;">تتدفق من منطقة مرتفعة إلى منخفضة بفعل الجاذبية</p>
+                                    <span style="background: rgba(255,255,255,0.2); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem;">🐼 دائماً عذب</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sphere-card lithosphere" style="background: linear-gradient(135deg, #78716c 0%, #57534e 100%); min-height: auto;">
+                            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                                <div style="font-size: 3rem;">⛏️</div>
+                                <div>
+                                    <h3 style="margin-bottom: 0.5rem;">المياه الجوفية</h3>
+                                    <p style="opacity: 0.9; margin-bottom: 0.75rem;">تتسرّب عبر الصخور المسامية مثل الإسفنج</p>
+                                    <span style="background: rgba(255,255,255,0.2); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem;">💧 معظمها عذبة</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sphere-card" style="background: linear-gradient(135deg, #0e7490 0%, #155e75 100%); min-height: auto;">
+                            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                                <div style="font-size: 3rem;">🧊</div>
+                                <div>
+                                    <h3 style="margin-bottom: 0.5rem;">المحيطات والبحار</h3>
+                                    <p style="opacity: 0.9; margin-bottom: 0.75rem;">تمثل 71% من سطح الأرض</p>
+                                    <span style="background: rgba(255,255,255,0.2); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem;">🌊 ماء مالح</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Table -->
+                <div class="subsection">
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">📊 ملخص مقارن بين الأغلفة</h4>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>الغلاف</th>
+                                <th>الحالة</th>
+                                <th>النسبة/الكمية</th>
+                                <th>الأهمية</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>🌱 الحيوي</strong></td>
+                                <td>كائنات حية</td>
+                                <td>جميع الكائنات</td>
+                                <td>الحياة نفسها</td>
+                            </tr>
+                            <tr>
+                                <td><strong>💧 المائي</strong></td>
+                                <td>سائل/صلب/غاز</td>
+                                <td>71% من السطح</td>
+                                <td>أساس الحياة</td>
+                            </tr>
+                            <tr>
+                                <td><strong>☁️ الجوي</strong></td>
+                                <td>غازات</td>
+                                <td>100 كم سماكاً</td>
+                                <td>الحماية والتنفس</td>
+                            </tr>
+                            <tr>
+                                <td><strong>⛰️ الأرضي</strong></td>
+                                <td>صلب</td>
+                                <td>29% من السطح</td>
+                                <td>المعيشة والزراعة</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn-nav btn-prev" onclick="goToSection(0)">
+                    <i class="fas fa-arrow-right"></i>
+                    السابق
+                </button>
+                <button class="btn-nav btn-next" onclick="goToSection(2)">
+                    التالي
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 2: True/False (10 Questions) -->
+        <section class="section" id="section-2">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h2><i class="fas fa-check-circle"></i> صح أم خطأ؟</h2>
+                    <p>ضع علامة (✓) أمام العبارة الصحيحة وعلامة (✗) أمام العبارة الخاطئة</p>
+                    <div class="quiz-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>10 أسئلة</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <span>10 درجات</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quiz-body" id="tfContainer">
+                    <!-- Generated by JS -->
+                </div>
+
+                <button class="btn-nav btn-check" onclick="checkTrueFalse()">
+                    <i class="fas fa-check-double"></i>
+                    تحقق من الإجابات
+                </button>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn-nav btn-prev" onclick="goToSection(1)">
+                    <i class="fas fa-arrow-right"></i>
+                    السابق
+                </button>
+                <button class="btn-nav btn-next" onclick="goToSection(3)">
+                    التالي
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 3: Multiple Choice (7 Questions) -->
+        <section class="section" id="section-3">
+            <div class="quiz-container">
+                <div class="quiz-header" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
+                    <h2><i class="fas fa-list-alt"></i> اختر الإجابة الصحيحة</h2>
+                    <p>اختر الإجابة الصحيحة مما بين الأقواس فيما يلي</p>
+                    <div class="quiz-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>7 أسئلة</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <span>7 درجات</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quiz-body" id="mcqContainer">
+                    <!-- Generated by JS -->
+                </div>
+
+                <button class="btn-nav btn-check" onclick="checkMCQ()" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
+                    <i class="fas fa-check-double"></i>
+                    تحقق من الإجابات
+                </button>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn-nav btn-prev" onclick="goToSection(2)">
+                    <i class="fas fa-arrow-right"></i>
+                    السابق
+                </button>
+                <button class="btn-nav btn-next" onclick="goToSection(4)">
+                    التالي
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 4: Fill in Blanks (5 Questions) -->
+        <section class="section" id="section-4">
+            <div class="quiz-container">
+                <div class="quiz-header" style="background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);">
+                    <h2><i class="fas fa-pen"></i> أكمل وعلّل</h2>
+                    <p>أكمل العبارات الآتية بالكلمة المناسبة، ثم علّل الإجابات</p>
+                    <div class="quiz-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>5 أسئلة أكمل + 4 تعليل</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <span>9 درجات</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quiz-body">
+                    <div style="margin-bottom: 3rem;">
+                        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.3rem;">أ) أكمل العبارات الآتية بالكلمة المناسبة:</h3>
+                        
+                        <div class="question-block" id="fill-1">
+                            <div class="question-header-row">
+                                <div class="q-number">1</div>
+                                <div class="question-text fill-question">
+                                    الماء ما يقرب من 
+                                    <input type="text" class="blank-input" id="blank1" placeholder="؟؟؟">
+                                    % من سطح الكرة الأرضية.
+                                </div>
+                            </div>
+                            <div class="feedback-box" id="feedback-fill-1">
+                                <span class="feedback-icon"></span>
+                                <div class="feedback-content"></div>
+                            </div>
+                        </div>
+
+                        <div class="question-block" id="fill-2">
+                            <div class="question-header-row">
+                                <div class="q-number">2</div>
+                                <div class="question-text fill-question">
+                                    تتحوّل المياه من الحالة السائلة إلى الصلبة بعمليّة تُسمّى 
+                                    <input type="text" class="blank-input" id="blank2" placeholder="؟؟؟؟؟">
+                                    .
+                                </div>
+                            </div>
+                            <div class="feedback-box" id="feedback-fill-2">
+                                <span class="feedback-icon"></span>
+                                <div class="feedback-content"></div>
+                            </div>
+                        </div>
+
+                        <div class="question-block" id="fill-3">
+                            <div class="question-header-row">
+                                <div class="q-number">3</div>
+                                <div class="question-text fill-question">
+                                    الغلاف الذي يشمل جميع الكائنات الحية على الأرض يُسمّى 
+                                    <input type="text" class="blank-input" id="blank3" placeholder="؟؟؟؟؟؟؟؟؟؟">
+                                    .
+                                </div>
+                            </div>
+                            <div class="feedback-box" id="feedback-fill-3">
+                                <span class="feedback-icon"></span>
+                                <div class="feedback-content"></div>
+                            </div>
+                        </div>
+
+                        <div class="question-block" id="fill-4">
+                            <div class="question-header-row">
+                                <div class="q-number">4</div>
+                                <div class="question-text fill-question">
+                                    المياه التي توجد تحت سطح الأرض في طبقات الصخور تُسمّى 
+                                    <input type="text" class="blank-input" id="blank4" placeholder="؟؟؟؟؟؟؟؟؟؟">
+                                    .
+                                </div>
+                            </div>
+                            <div class="feedback-box" id="feedback-fill-4">
+                                <span class="feedback-icon"></span>
+                                <div class="feedback-content"></div>
+                            </div>
+                        </div>
+
+                        <div class="question-block" id="fill-5">
+                            <div class="question-header-row">
+                                <div class="q-number">5</div>
+                                <div class="question-text fill-question">
+                                    الصخور التي تسمح بتسرّب الماء من خلالها تُسمّى 
+                                    <input type="text" class="blank-input" id="blank5" placeholder="؟؟؟؟؟؟؟؟؟؟">
+                                    .
+                                </div>
+                            </div>
+                            <div class="feedback-box" id="feedback-fill-5">
+                                <span class="feedback-icon"></span>
+                                <div class="feedback-content"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.3rem;">ب) علّل لماذا:</h3>
+                        
+                        <div class="question-block" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-color: #3b82f6;">
+                            <div class="question-header-row">
+                                <div class="q-number" style="background: #3b82f6;">1</div>
+                                <div class="question-text">يُطلق على كوكب الأرض لقب "الكرة الزرقاء" عند النظر إليه من الفضاء.</div>
+                            </div>
+                            <textarea style="width: 100%; min-height: 100px; border: 2px dashed #3b82f6; border-radius: 15px; padding: 1rem; font-family: inherit; font-size: 1rem; margin-top: 1rem; resize: vertical;" placeholder="اكتب تعليلك هنا..."></textarea>
+                        </div>
+
+                        <div class="question-block" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-color: #3b82f6;">
+                            <div class="question-header-row">
+                                <div class="q-number" style="background: #3b82f6;">2</div>
+                                <div class="question-text">كمية الماء على سطح الأرض ثابتة رغم التبخّر المستمر.</div>
+                            </div>
+                            <textarea style="width: 100%; min-height: 100px; border: 2px dashed #3b82f6; border-radius: 15px; padding: 1rem; font-family: inherit; font-size: 1rem; margin-top: 1rem; resize: vertical;" placeholder="اكتب تعليلك هنا..."></textarea>
+                        </div>
+
+                        <div class="question-block" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-color: #3b82f6;">
+                            <div class="question-header-row">
+                                <div class="q-number" style="background: #3b82f6;">3</div>
+                                <div class="question-text">يُستخدم العلماء كلمة "غلاف" لوصف أنظمة الأرض الأربعة.</div>
+                            </div>
+                            <textarea style="width: 100%; min-height: 100px; border: 2px dashed #3b82f6; border-radius: 15px; padding: 1rem; font-family: inherit; font-size: 1rem; margin-top: 1rem; resize: vertical;" placeholder="اكتب تعليلك هنا..."></textarea>
+                        </div>
+
+                        <div class="question-block" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-color: #3b82f6;">
+                            <div class="question-header-row">
+                                <div class="q-number" style="background: #3b82f6;">4</div>
+                                <div class="question-text">يُعدّ الماء أساس الحياة على كوكب الأرض.</div>
+                            </div>
+                            <textarea style="width: 100%; min-height: 100px; border: 2px dashed #3b82f6; border-radius: 15px; padding: 1rem; font-family: inherit; font-size: 1rem; margin-top: 1rem; resize: vertical;" placeholder="اكتب تعليلك هنا..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-nav btn-check" onclick="checkFillBlanks()" style="background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);">
+                    <i class="fas fa-check-double"></i>
+                    تحقق من الإجابات
+                </button>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn-nav btn-prev" onclick="goToSection(3)">
+                    <i class="fas fa-arrow-right"></i>
+                    السابق
+                </button>
+                <button class="btn-nav btn-next" onclick="goToSection(5)">
+                    التالي
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 5: Scientific Terms (5 Questions) -->
+        <section class="section" id="section-5">
+            <div class="quiz-container">
+                <div class="quiz-header" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+                    <h2><i class="fas fa-microscope"></i> المصطلحات العلمية</h2>
+                    <p>اكتب المصطلح العلمي المناسب، ثم أجب عن أسئلة التفكير الناقد</p>
+                    <div class="quiz-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>5 مصطلحات + 3 تفكير</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <span>8 درجات</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quiz-body">
+                    <div style="margin-bottom: 3rem;">
+                        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.3rem;">أ) اكتب المصطلح العلمي المناسب:</h3>
+                        
+                        <div class="question-block" style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-color: #059669;">
+                            <div class="question-header-row">
+                                <div class="q-number" style="background: #059669;">1</div>
+                                <div class="question-text">
+                                    الماء من الحالة السائلة إلى الصلبة عند التبريد.
+                                    <div style="margin-top: 1rem; color: #666;">
+                                        المصطلح: <input type="text" class="blank-input" id="term1" style="border-color: #059669; min-width: 150px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feedback-box" id="feedback-term-1"></div>
+                        </div>
+
+                        <div class="question-block" style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-color: #059669;">
+                            <div class="question-header-row">
+                                <div class="q-number" style="background: #059669;">2</div>
+                                <div class="question-text">
+                                    الماء من الحالة السائلة إلى الغازية عند التسخين.
+                                    <div style="margin-top: 1rem; color: #666;">
+                                        المصطلح: <input type="text" class="blank-input" id="term2" style="border-color: #059669; min-width: 150px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feedback-box" id="feedback-term-2"></div>
+                        </div>
+
+                        <div class="question-block" style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-color: #059669;">
+                            <div class="question-header-row">
+                                <div class="q-number" style="background: #059669;">3</div>
+                                <div class="question-text">
+                                    ثلج مائي محاط باليابسة من كل جهاته.
+                                    <div style="margin-top: 1rem; color: #666;">
+                                        المصطلح: <input type="text" class="blank-input" id="term3" style="border-color: #059669; min-width: 150px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feedback-box" id="feedback-term-3"></div>
+                        </div>
+
+                        <div class="question-block" style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-color: #059669;">
+                            <div class="question-header-row">
+                                <div class="q-number" style="background: #059669;">4</div>
+                                <div class="question-text">
+                                    صخور بها فراغات وثقوب صغيرة تسمح بتسرّب الماء خلالها.
+                                    <div style="margin-top: 1rem; color: #666;">
+                                        المصطلح: <input type="text" class="blank-input" id="term4" style="border-color: #059669; min-width: 150px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feedback-box" id="feedback-term-4"></div>
+                        </div>
+
+                        <div class="question-block" style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-color: #059669;">
+                            <div class="question-header-row">
+                                <div class="q-number" style="background: #059669;">5</div>
+                                <div class="question-text">
+                                    تتجمّع تحت سطح الأرض عبر طبقات الصخور.
+                                    <div style="margin-top: 1rem; color: #666;">
+                                        المصطلح: <input type="text" class="blank-input" id="term5" style="border-color: #059669; min-width: 150px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feedback-box" id="feedback-term-5"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.3rem;">ب) فكّر وأجب — تفكير ناقد:</h3>
+                        
+                        <div class="question-block" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-color: #f59e0b;">
+                            <div class="question-header-row">
+                                <div class="q-number" style="background: #f59e0b;">1</div>
+                                <div class="question-text">
+                                    <strong>قال التلميذ:</strong> "كمية الماء على الأرض ثابتة، فلا داعي للتوفير." <strong>هل توافقه؟ ولماذا؟</strong>
+                                </div>
+                            </div>
+                            <textarea style="width: 100%; min-height: 120px; border: 2px dashed #f59e0b; border-radius: 15px; padding: 1rem; font-family: inherit; font-size: 1rem; margin-top: 1rem; resize: vertical;" placeholder="ناقش الرأي وأعطِ رأيك مدعماً بالأدلة..."></textarea>
+                            <div style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.5); border-radius: 10px; font-size: 0.9rem; color: #92400e;">
+                                <i class="fas fa-lightbulb"></i> <strong>تلميح:</strong> فكّر في توزيع الماء ونوعيته (عذب/مالح) وكمية الماء الصالح للشرب.
+                            </div>
+                        </div>
+
+                        <div class="question-block" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-color: #f59e0b;">
+                            <div class="question-header-row">
+                                <div class="q-number" style="background: #f59e0b;">2</div>
+                                <div class="question-text">
+                                    <strong>صنّف:</strong> بنات الأرض إلى أغلفة رئيسية. حدّد عددها واذكر اثنين منها مع تعريف كل منهما.
+                                </div>
+                            </div>
+                            <textarea style="width: 100%; min-height: 120px; border: 2px dashed #f59e0b; border-radius: 15px; padding: 1rem; font-family: inherit; font-size: 1rem; margin-top: 1rem; resize: vertical;" placeholder="صنّف وعطّف..."></textarea>
+                        </div>
+
+                        <div class="question-block" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-color: #f59e0b;">
+                            <div class="question-header-row">
+                                <div class="q-number" style="background: #f59e0b;">3</div>
+                                <div class="question-text">
+                                    <strong>استنتج:</strong> ثلاثة استخدامات اقتصادية للماء تُمثّل تفاعل الغلاف الحيوي مع الغلاف المائي.
+                                </div>
+                            </div>
+                            <textarea style="width: 100%; min-height: 120px; border: 2px dashed #f59e0b; border-radius: 15px; padding: 1rem; font-family: inherit; font-size: 1rem; margin-top: 1rem; resize: vertical;" placeholder="استنتج وربط بين المفهومين..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-nav btn-check" onclick="checkTerms()" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+                    <i class="fas fa-check-double"></i>
+                    تحقق من الإجابات
+                </button>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn-nav btn-prev" onclick="goToSection(4)">
+                    <i class="fas fa-arrow-right"></i>
+                    السابق
+                </button>
+                <button class="btn-nav btn-next" onclick="goToSection(6)">
+                    التالي
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 6: Matching (3 Questions) -->
+        <section class="section" id="section-6">
+            <div class="quiz-container">
+                <div class="quiz-header" style="background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);">
+                    <h2><i class="fas fa-puzzle-piece"></i> صحّح العلاقة</h2>
+                    <p>اربط كل عنصر من العمود (أ) بالعنصر المناسب من العمود (ب)</p>
+                    <div class="quiz-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>3 أسئلة</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <span>3 درجات</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quiz-body">
+                    <div class="question-block">
+                        <div class="question-header-row">
+                            <div class="q-number" style="background: #0891b2;">1</div>
+                            <div class="question-text">اربط عملية تغيّر حالة الماء بالتغيّر المناسب:</div>
+                        </div>
+                        
+                        <div class="matching-container" style="margin-top: 1.5rem;">
+                            <div class="matching-column">
+                                <h4>أ) العملية</h4>
+                                <div class="matching-item" onclick="selectMatch(this, 'A')">
+                                    <span>1. صلب ← سائل</span>
+                                </div>
+                                <div class="matching-item" onclick="selectMatch(this, 'B')">
+                                    <span>2. سائل ← غاز</span>
+                                </div>
+                                <div class="matching-item" onclick="selectMatch(this, 'C')">
+                                    <span>3. سائل ← صلب</span>
+                                </div>
+                            </div>
+                            <div class="matching-column">
+                                <h4>ب) التغيّر</h4>
+                                <div class="matching-item" onclick="selectMatch(this, '1')">
+                                    <span>أ) التجمّد</span>
+                                </div>
+                                <div class="matching-item" onclick="selectMatch(this, '2')">
+                                    <span>ب) التبخّر</span>
+                                </div>
+                                <div class="matching-item" onclick="selectMatch(this, '3')">
+                                    <span>ج) الذوبان</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <div class="question-header-row">
+                            <div class="q-number" style="background: #0891b2;">2</div>
+                            <div class="question-text">اربط الغلاف بما يمثله:</div>
+                        </div>
+                        
+                        <div class="matching-container" style="margin-top: 1.5rem;">
+                            <div class="matching-column">
+                                <h4>أ) الغلاف</h4>
+                                <div class="matching-item" onclick="selectMatch(this, 'D')">
+                                    <span>1. الحيوي</span>
+                                </div>
+                                <div class="matching-item" onclick="selectMatch(this, 'E')">
+                                    <span>2. المائي</span>
+                                </div>
+                                <div class="matching-item" onclick="selectMatch(this, 'F')">
+                                    <span>3. الأرضي</span>
+                                </div>
+                            </div>
+                            <div class="matching-column">
+                                <h4>ب) التمثيل</h4>
+                                <div class="matching-item" onclick="selectMatch(this, '4')">
+                                    <span>أ) الصخور والتربة</span>
+                                </div>
+                                <div class="matching-item" onclick="selectMatch(this, '5')">
+                                    <span>ب) المحيطات والأنهار</span>
+                                </div>
+                                <div class="matching-item" onclick="selectMatch(this, '6')">
+                                    <span>ج) الكائنات الحية</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-block">
+                        <div class="question-header-row">
+                            <div class="q-number" style="background: #0891b2;">3</div>
+                            <div class="question-text">اربط المصطلح بالتعريف:</div>
+                        </div>
+                        
+                        <div class="matching-container" style="margin-top: 1.5rem;">
+                            <div class="matching-column">
+                                <h4>أ) المصطلح</h4>
+                                <div class="matching-item" onclick="selectMatch(this, 'G')">
+                                    <span>1. المياه الجوفية</span>
+                                </div>
+                                <div class="matching-item" onclick="selectMatch(this, 'H')">
+                                    <span>2. الصخور المسامية</span>
+                                </div>
+                                <div class="matching-item" onclick="selectMatch(this, 'I')">
+                                    <span>3. دورة الماء</span>
+                                </div>
+                            </div>
+                            <div class="matching-column">
+                                <h4>ب) التعريف</h4>
+                                <div class="matching-item" onclick="selectMatch(this, '7')">
+                                    <span>أ) انتقال الماء بين حالاته</span>
+                                </div>
+                                <div class="matching-item" onclick="selectMatch(this, '8')">
+                                    <span>ب) تحت سطح الأرض</span>
+                                </div>
+                                <div class="matching-item" onclick="selectMatch(this, '9')">
+                                    <span>ج) بها فراغات صغيرة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-nav btn-check" onclick="checkMatching()" style="background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);">
+                    <i class="fas fa-check-double"></i>
+                    تحقق من الإجابات
+                </button>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn-nav btn-prev" onclick="goToSection(5)">
+                    <i class="fas fa-arrow-right"></i>
+                    السابق
+                </button>
+                <button class="btn-nav btn-next" onclick="goToSection(7)">
+                    التالي
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 7: Answer Key -->
+        <section class="section" id="section-7">
+            <div class="content-wrapper" style="background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white;">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <div style="display: inline-block; background: rgba(255,255,255,0.2); padding: 0.75rem 2rem; border-radius: 50px; margin-bottom: 1rem;">
+                        <i class="fas fa-key"></i> مفتاح الإجابات
+                    </div>
+                    <h2 style="font-size: 2.5rem; color: var(--accent-gold);">نموذج الإجابات الكاملة</h2>
+                </div>
+
+                <!-- True/False Answers -->
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="color: var(--accent-gold); margin-bottom: 1.5rem; border-bottom: 2px solid rgba(255,215,0,0.3); padding-bottom: 0.5rem;">
+                        ⭐ السؤال الأول: صح أم خطأ؟
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>1.</strong> الأرض نظام بيئي <span style="color: #81c784;">✓ صح</span></p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>2.</strong> الغلاف الحيوي = الصخور <span style="color: #ef5350;">✗ خطأ</span> (الغلاف الأرضي)</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>3.</strong> كمية الماء تتغيّر <span style="color: #ef5350;">✗ خطأ</span> (ثابتة)</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>4.</strong> النباتات تحتاج الماء <span style="color: #81c784;">✓ صح</span></p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>5.</strong> المياه الجوفية مالحة <span style="color: #ef5350;">✗ خطأ</span> (عذبة)</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>6.</strong> الماء يغطي 71% <span style="color: #81c784;">✓ صح</span></p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>7.</strong> الماء يتحوّل بالتبريد <span style="color: #ef5350;">✗ خطأ</span> (بالتجمّد)</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>8.</strong> كل الكائنات تحتاج الماء <span style="color: #81c784;">✓ صح</span></p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>9.</strong> النظام = كائنات + بيئة <span style="color: #81c784;">✓ صح</span></p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>10.</strong> "غلاف" لأنها كروية <span style="color: #81c784;">✓ صح</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MCQ Answers -->
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="color: var(--accent-gold); margin-bottom: 1.5rem; border-bottom: 2px solid rgba(255,215,0,0.3); padding-bottom: 0.5rem;">
+                        📝 السؤال الثاني: الاختيار من متعدد
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>1.</strong> مكوّنات الغلاف المائي: <span style="color: #81c784;">ب) الأنهار الجليدية</span></p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>2.</strong> تحوّل الماء للغاز: <span style="color: #81c784;">ج) التبخّر</span></p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>3.</strong> ثلج مائي محاط باليابسة: <span style="color: #81c784;">ب) الأنهار</span></p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>4.</strong> يصف الغلاف الأرضي: <span style="color: #81c784;">ج) الصخور والتربة</span></p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>5.</strong> أهمية الصخور المسامية: <span style="color: #81c784;">ب) تسرّب المياه</span></p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>6.</strong> نسبة الماء: <span style="color: #81c784;">ج) 71%</span></p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: 15px;">
+                            <p><strong>7.</strong> نشاط اقتصادي: <span style="color: #81c784;">أ) الزراعة</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fill in Blanks Answers -->
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="color: var(--accent-gold); margin-bottom: 1.5rem; border-bottom: 2px solid rgba(255,215,0,0.3); padding-bottom: 0.5rem;">
+                        ✏️ السؤال الثالث: أكمل
+                    </h3>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px;">
+                        <p style="margin-bottom: 1rem;"><strong>1.</strong> <span style="color: #81c784;">71</span> %</p>
+                        <p style="margin-bottom: 1rem;"><strong>2.</strong> <span style="color: #81c784;">التجمّد</span></p>
+                        <p style="margin-bottom: 1rem;"><strong>3.</strong> <span style="color: #81c784;">الغلاف الحيوي</span></p>
+                        <p style="margin-bottom: 1rem;"><strong>4.</strong> <span style="color: #81c784;">المياه الجوفية</span></p>
+                        <p style="margin-bottom: 1rem;"><strong>5.</strong> <span style="color: #81c784;">الصخور المسامية</span></p>
+                    </div>
+                </div>
+
+                <!-- Terms Answers -->
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="color: var(--accent-gold); margin-bottom: 1.5rem; border-bottom: 2px solid rgba(255,215,0,0.3); padding-bottom: 0.5rem;">
+                        🧪 السؤال الرابع: المصطلحات
+                    </h3>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px;">
+                        <p style="margin-bottom: 1rem;"><strong>1.</strong> صلب ← سائل: <span style="color: #81c784;">الذوبان</span></p>
+                        <p style="margin-bottom: 1rem;"><strong>2.</strong> سائل ← غاز: <span style="color: #81c784;">التبخّر</span></p>
+                        <p style="margin-bottom: 1rem;"><strong>3.</strong> ثلج مائي: <span style="color: #81c784;">النهر</span></p>
+                        <p style="margin-bottom: 1rem;"><strong>4.</strong> صخور بفراغات: <span style="color: #81c784;">المسامية</span></p>
+                        <p style="margin-bottom: 1rem;"><strong>5.</strong> تحت الأرض: <span style="color: #81c784;">المياه الجوفية</span></p>
+                    </div>
+                </div>
+
+                <!-- Matching Answers -->
+                <div>
+                    <h3 style="color: var(--accent-gold); margin-bottom: 1.5rem; border-bottom: 2px solid rgba(255,215,0,0.3); padding-bottom: 0.5rem;">
+                        🧩 السؤال الخامس: صحّح العلاقة
+                    </h3>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px;">
+                        <p style="margin-bottom: 1rem;"><strong>1.</strong> 1←ج (الذوبان), 2←ب (التبخّر), 3←أ (التجمّد)</p>
+                        <p style="margin-bottom: 1rem;"><strong>2.</strong> 1←ج (الكائنات), 2←ب (المحيطات), 3←أ (الصخور)</p>
+                        <p><strong>3.</strong> 1←ب (تحت الأرض), 2←ج (فراغات), 3←أ (دورة الماء)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn-nav btn-prev" onclick="goToSection(6)">
+                    <i class="fas fa-arrow-right"></i>
+                    السابق
+                </button>
+                <button class="btn-nav btn-next" onclick="goToSection(8)">
+                    التالي
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 8: Key Terms Dictionary -->
+        <section class="section" id="section-8">
+            <div class="content-wrapper" style="background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%); color: white;">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <div style="display: inline-block; background: rgba(255,255,255,0.2); padding: 0.75rem 2rem; border-radius: 50px; margin-bottom: 1rem;">
+                        <i class="fas fa-book"></i> المعجم العلمي
+                    </div>
+                    <h2 style="font-size: 2.5rem; color: var(--accent-gold);">المصطلحات الذهبية للدرس</h2>
+                </div>
+
+                <div class="term-card" style="background: rgba(255,255,255,0.1); color: white;">
+                    <div class="term-header">
+                        <div class="term-icon-box" style="background: var(--accent-gold); color: var(--primary-dark);">🌊</div>
+                        <div>
+                            <div class="term-title" style="color: var(--accent-gold);">الغلاف المائي</div>
+                            <div class="term-en">Hydrosphere</div>
+                        </div>
+                    </div>
+                    <div class="term-definition">
+                        يشمل جميع المياه الموجودة على الأرض بمختلف حالاتها (سائلة، صلبة، غازية): البحار والمحيطات والأنهار والبحيرات والمياه الجوفية والأنهار الجليدية والثلوج وبخار الماء في الغلاف الجوي.
+                    </div>
+                </div>
+
+                <div class="term-card" style="background: rgba(255,255,255,0.1); color: white;">
+                    <div class="term-header">
+                        <div class="term-icon-box" style="background: #81c784; color: var(--primary-dark);">🌱</div>
+                        <div>
+                            <div class="term-title" style="color: #81c784;">الغلاف الحيوي</div>
+                            <div class="term-en">Biosphere</div>
+                        </div>
+                    </div>
+                    <div class="term-definition">
+                        يشمل جميع الكائنات الحية الموجودة على سطح الأرض وفي محيطاتها: الإنسان والحيوانات والنباتات والكائنات الدقيقة (البكتيريا والفطريات والفيروسات).
+                    </div>
+                </div>
+
+                <div class="term-card" style="background: rgba(255,255,255,0.1); color: white;">
+                    <div class="term-header">
+                        <div class="term-icon-box" style="background: #a1887f; color: white;">⛰️</div>
+                        <div>
+                            <div class="term-title" style="color: #d7ccc8;">الغلاف الأرضي</div>
+                            <div class="term-en">Lithosphere</div>
+                        </div>
+                    </div>
+                    <div class="term-definition">
+                        القشرة الصلبة للأرض التي تتكون من الصخور والمعادن والتربة. يمتد من سطح الأرض حتى عمق حوالي 100 كم ويشمل القارات والقيعان المحيطية.
+                    </div>
+                </div>
+
+                <div class="term-card" style="background: rgba(255,255,255,0.1); color: white;">
+                    <div class="term-header">
+                        <div class="term-icon-box" style="background: #90a4ae; color: white;">☁️</div>
+                        <div>
+                            <div class="term-title" style="color: #cfd8dc;">الغلاف الجوي</div>
+                            <div class="term-en">Atmosphere</div>
+                        </div>
+                    </div>
+                    <div class="term-definition">
+                        طبقة الغازات المحيطة بالأرض التي تحميها من الإشعاعات الضارة والنيازك. يتكون أساساً من النيتروجين (78%) والأكسجين (21%) وغازات أخرى.
+                    </div>
+                </div>
+
+                <div class="term-card" style="background: rgba(255,255,255,0.1); color: white;">
+                    <div class="term-header">
+                        <div class="term-icon-box" style="background: #4fc3f7; color: var(--primary-dark);">❄️</div>
+                        <div>
+                            <div class="term-title" style="color: #4fc3f7;">التجمّد</div>
+                            <div class="term-en">Freezing</div>
+                        </div>
+                    </div>
+                    <div class="term-definition">
+                        عملية تحول الماء من الحالة السائلة إلى الحالة الصلبة (ثلج) عند انخفاض درجة الحرارة إلى 0° مئوية أو أقل. العكس: الذوبان.
+                    </div>
+                </div>
+
+                <div class="term-card" style="background: rgba(255,255,255,0.1); color: white;">
+                    <div class="term-header">
+                        <div class="term-icon-box" style="background: #ff8a65; color: var(--primary-dark);">☀️</div>
+                        <div>
+                            <div class="term-title" style="color: #ff8a65;">التبخّر</div>
+                            <div class="term-en">Evaporation</div>
+                        </div>
+                    </div>
+                    <div class="term-definition">
+                        عملية تحول الماء من الحالة السائلة إلى الحالة الغازية (بخار ماء) عند تعرضه للحرارة. تتبخر المياه من المحيطات والبحيرات والأنهار والتربة.
+                    </div>
+                </div>
+
+                <div class="term-card" style="background: rgba(255,255,255,0.1); color: white;">
+                    <div class="term-header">
+                        <div class="term-icon-box" style="background: #a1887f; color: white;">🪨</div>
+                        <div>
+                            <div class="term-title" style="color: #d7ccc8;">الصخور المسامية</div>
+                            <div class="term-en">Porous Rocks</div>
+                        </div>
+                    </div>
+                    <div class="term-definition">
+                        صخور تحتوي على فراغات وثقوب صغيرة متصلة تسمح بتسرّب الماء خلالها وتخزينه، مثل الإسفنج تماماً. مثال: الحجر الرملي والحجر الجيري.
+                    </div>
+                </div>
+
+                <div class="term-card" style="background: rgba(255,255,255,0.1); color: white;">
+                    <div class="term-header">
+                        <div class="term-icon-box" style="background: #4db6ac; color: white;">💧</div>
+                        <div>
+                            <div class="term-title" style="color: #4db6ac;">المياه الجوفية</div>
+                            <div class="term-en">Groundwater</div>
+                        </div>
+                    </div>
+                    <div class="term-definition">
+                        المياه التي تتسرّب من سطح الأرض عبر التربة والصخور المسامية وتتجمع في طبقات تحت الأرض. تُستخرج عبر الآرتوازية وتمثل مصدراً مهماً للمياه العذبة.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn-nav btn-prev" onclick="goToSection(7)">
+                    <i class="fas fa-arrow-right"></i>
+                    السابق
+                </button>
+                <button class="btn-nav btn-next" onclick="goToSection(9)">
+                    التالي
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 9: Interactive Summary -->
+        <section class="section" id="section-9">
+            <div class="content-wrapper">
+                <div class="section-header">
+                    <div class="section-number" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">📊</div>
+                    <div class="section-title-group">
+                        <h2>ملخص تفاعلي</h2>
+                        <p>اختبر فهمك السريع للدرس</p>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item active">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h4>🌍 ما هي أغلفة الأرض الأربعة؟</h4>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p>الغلاف الحيوي (الكائنات الحية)، الغلاف المائي (المياه)، الغلاف الجوي (الغازات)، الغلاف الأرضي (الصخور والتربة).</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h4>💧 لماذا الماء مهم؟</h4>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p>للبقاء والنمو (الشرب والبناء الضوئي)، للحفاظ على الصحة (التنظيف والطهي)، للأنشطة الاقتصادية (النقل والصناعة والزراعة).</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h4>🔄 ما هي دورة الماء؟</h4>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p>التبخر ← التكاثف ← الهطول ← التجميع ← التسخين (ثم تعود للبداية). كمية الماء ثابتة، لكن حالته تتغير.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h4>🎭 ما هي حالات الماء الثلاث؟</h4>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p>صلب (ثلج)، سائل (ماء)، غاز (بخار). يتغير بحسب درجة الحرارة والضغط.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box icon-box" style="margin-top: 3rem;">
+                    <div class="info-icon">🎯</div>
+                    <div class="info-content">
+                        <h4>نصيحة للمذاكرة</h4>
+                        <p>ركز على فهم العلاقات بين الأغلفة الأربعة، وليس الحفظ فقط. فكّر في: كيف يتفاعل الغلاف المائي مع الحيوي؟ ماذا يحدث لو اختفى أحدهما؟</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn-nav btn-prev" onclick="goToSection(8)">
+                    <i class="fas fa-arrow-right"></i>
+                    السابق
+                </button>
+                <button class="btn-nav btn-next" onclick="goToSection(10)">
+                    التالي
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 10: Mini Quiz (5 Quick Questions) -->
+        <section class="section" id="section-10">
+            <div class="quiz-container">
+                <div class="quiz-header" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);">
+                    <h2><i class="fas fa-bolt"></i> تحدي سريع</h2>
+                    <p>5 أسئلة سريعة لاختبار استيعابك</p>
+                </div>
+                
+                <div class="quiz-body" id="miniQuizContainer">
+                    <!-- Generated by JS -->
+                </div>
+
+                <button class="btn-nav btn-check" onclick="checkMiniQuiz()" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);">
+                    <i class="fas fa-check-double"></i>
+                    تحقق من الإجابات
+                </button>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="btn-nav btn-prev" onclick="goToSection(9)">
+                    <i class="fas fa-arrow-right"></i>
+                    السابق
+                </button>
+                <button class="btn-nav btn-next" onclick="goToSection(11)">
+                    النتائج والإنجازات
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 11: Results -->
+        <section class="section" id="section-11">
+            <div class="results-hero">
+                <div class="trophy-animation">🏆</div>
+                <h2 class="results-title">مبروك يا بطل العلوم!</h2>
+                <p class="results-subtitle">أنهيت الدرس الأول بنجاح ✓</p>
+                <p style="color: var(--white); opacity: 0.9; margin-top: 0.5rem;">أنت الآن عالم صغير! 👨‍🔬👩‍🔬</p>
+
+                <div class="score-circle" id="scoreCircle" style="--score-percent: 0;">
+                    <div class="score-content">
+                        <div class="score-number" id="scoreNumber">0/30</div>
+                        <div class="score-label">درجة</div>
+                    </div>
+                </div>
+
+                <div class="stars-container" id="starsDisplay">⭐⭐⭐⭐⭐</div>
+
+                <div class="achievement-list">
+                    <div class="achievement-item unlocked" id="ach1">
+                        <div class="achievement-icon">🎯</div>
+                        <div class="achievement-info">
+                            <h4>من 25 إلى 30 درجة</h4>
+                            <p>⭐⭐⭐⭐⭐ أسطوري! أنت خبير في علوم الأرض!</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item locked" id="ach2">
+                        <div class="achievement-icon">🥈</div>
+                        <div class="achievement-info">
+                            <h4>من 20 إلى 24 درجة</h4>
+                            <p>⭐⭐⭐⭐ ممتاز! فهمك عميق للمادة!</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item locked" id="ach3">
+                        <div class="achievement-icon">🥉</div>
+                        <div class="achievement-info">
+                            <h4>من 15 إلى 19 درجة</h4>
+                            <p>⭐⭐⭐ جيد جداً! استمر في التقدم!</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item locked" id="ach4">
+                        <div class="achievement-icon">📚</div>
+                        <div class="achievement-info">
+                            <h4>أقل من 15 درجة</h4>
+                            <p>راجع الدرس مجدداً، أنت قادر على الأفضل!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-access-grid" style="margin-top: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <div class="access-card" onclick="location.reload()" style="background: rgba(255,255,255,0.1); color: white;">
+                        <div class="access-icon">🔄</div>
+                        <h3>إعادة المحاولة</h3>
+                        <p>حل الاختبار مرة أخرى</p>
+                    </div>
+                    <div class="access-card" onclick="goToSection(1)" style="background: rgba(255,255,255,0.1); color: white;">
+                        <div class="access-icon">📖</div>
+                        <h3>راجع الدرس</h3>
+                        <p>العودة للشرح</p>
+                    </div>
+                    <div class="access-card" onclick="window.print()" style="background: rgba(255,255,255,0.1); color: white;">
+                        <div class="access-icon">🖨️</div>
+                        <h3>طباعة</h3>
+                        <p>احفظ الدرس PDF</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Data
+        const tfQuestions = [
+            { id: 1, text: "الأرض نظام بيئي يتكون من أربعة أغلفة رئيسية.", answer: true },
+            { id: 2, text: "الغلاف الحيوي يشمل الصخور والتربة والرمال فقط.", answer: false, correction: "الغلاف الأرضي" },
+            { id: 3, text: "كمية الماء الإجمالية على سطح الأرض تتغيّر بمرور الزمن.", answer: false, correction: "ثابتة لا تتغيّر" },
+            { id: 4, text: "النباتات تحتاج الماء لإتمام عملية البناء الضوئي.", answer: true },
+            { id: 5, text: "المياه الجوفية الموجودة تحت الأرض مياه مالحة.", answer: false, correction: "معظمها عذبة" },
+            { id: 6, text: "الماء ما يقرب من ثلاثة أرباع (71%) سطح الكرة الأرضية.", answer: true },
+            { id: 7, text: "الماء يتحوّل من سائل إلى صلب عند التسخين.", answer: false, correction: "عند التبريد (التجمّد)" },
+            { id: 8, text: "جميع الكائنات الحية تحتاج إلى الماء للبقاء على قيد الحياة.", answer: true },
+            { id: 9, text: "النظام البيئي يشمل الكائنات الحية والبيئة غير الحية معاً.", answer: true },
+            { id: 10, text: "يستخدم العلماء كلمة 'غلاف' لأن الأرض كروية الشكل.", answer: true }
+        ];
+
+        const mcqQuestions = [
+            {
+                id: 1,
+                text: "أيٌّ مما يلي يُعدّ من مكوّنات الغلاف المائي؟",
+                options: [
+                    { letter: "أ", text: "الغابات والنباتات" },
+                    { letter: "ب", text: "الأنهار الجليدية والثلوج", correct: true },
+                    { letter: "ج", text: "الصخور والتربة والرمال" },
+                    { letter: "د", text: "الغازات المحيطة بالأرض" }
+                ]
+            },
+            {
+                id: 2,
+                text: "عملية تحوّل الماء من الحالة السائلة إلى الغازية تُسمّى:",
+                options: [
+                    { letter: "أ", text: "التجمّد" },
+                    { letter: "ب", text: "الانصهار" },
+                    { letter: "ج", text: "التبخّر", correct: true },
+                    { letter: "د", text: "التكثّف" }
+                ]
+            },
+            {
+                id: 3,
+                text: "ثلج مائي محاط باليابسة من جميع الجهات يُسمّى:",
+                options: [
+                    { letter: "أ", text: "النهر" },
+                    { letter: "ب", text: "الأنهار", correct: true },
+                    { letter: "ج", text: "المحيط" },
+                    { letter: "د", text: "الخليج" }
+                ]
+            },
+            {
+                id: 4,
+                text: "أيٌّ مما يلي يصف الغلاف الأرضي بشكل صحيح؟",
+                options: [
+                    { letter: "أ", text: "يشمل جميع المياه على الأرض" },
+                    { letter: "ب", text: "يشمل جميع الكائنات الحية" },
+                    { letter: "ج", text: "يشمل الصخور والتربة والرمال", correct: true },
+                    { letter: "د", text: "يشمل الهواء والغازات" }
+                ]
+            },
+            {
+                id: 5,
+                text: "لماذا تُعدّ الصخور المسامية مهمة للمياه الجوفية؟",
+                options: [
+                    { letter: "أ", text: "تكوّن التربة الزراعية" },
+                    { letter: "ب", text: "تسمح بتسرّب المياه وتخزينها", correct: true },
+                    { letter: "ج", text: "تُنتج الأكسجين للهواء" },
+                    { letter: "د", text: "تمنع تبخّر المياه" }
+                ]
+            },
+            {
+                id: 6,
+                text: "ما نسبة مساحة الماء على سطح الكرة الأرضية تقريباً؟",
+                options: [
+                    { letter: "أ", text: "50%" },
+                    { letter: "ب", text: "60%" },
+                    { letter: "ج", text: "71%", correct: true },
+                    { letter: "د", text: "80%" }
+                ]
+            },
+            {
+                id: 7,
+                text: "أيٌّ من الآتي يُعدّ نشاطاً اقتصادياً يعتمد على الغلاف المائي؟",
+                options: [
+                    { letter: "أ", text: "الزراعة وري المزروعات", correct: true },
+                    { letter: "ب", text: "قطع الأشجار من الغابات" },
+                    { letter: "ج", text: "استخراج المعادن من الجبال" },
+                    { letter: "د", text: "تربية الماشية في المزارع" }
+                ]
+            }
+        ];
+
+        const miniQuiz = [
+            { q: "كم نسبة الماء على سطح الأرض؟", a: ["50%", "71%", "90%"], correct: 1 },
+            { q: "ما اسم الغلاف الذي يشمل الكائنات الحية؟", a: ["المائي", "الحيوي", "الجوي"], correct: 1 },
+            { q: "ما عملية تحول الماء لبخار؟", a: ["التجمّد", "التبخّر", "الذوبان"], correct: 1 },
+            { q: "أين تتجمع المياه الجوفية؟", a: ["فوق الأرض", "تحت سطح الأرض", "في السماء"], correct: 1 },
+            { q: "ما الذي يميز الصخور المسامية؟", a: ["صلابتها", "فراغاتها الصغيرة", "لونها"], correct: 1 }
+        ];
+
+        // State
+        let currentSection = 0;
+        let totalScore = 0;
+        const maxScore = 30;
+        let userAnswers = {
+            tf: {},
+            mcq: {},
+            fill: {},
+            terms: {},
+            mini: {}
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+
+            renderNavDots();
+            renderTFQuestions();
+            renderMCQQuestions();
+            renderMiniQuiz();
+            updateProgress();
+        });
+
+        function renderNavDots() {
+            const dots = document.getElementById('navDots');
+            const sections = ['الرئيسية', 'الشرح', 'صح/خطأ', 'اختيار', 'أكمل', 'مصطلحات', 'اربط', 'نموذج', 'المعجم', 'ملخص', 'تحدي', 'النتائج'];
+            
+            dots.innerHTML = sections.map((title, i) => `
+                <div class="nav-dot ${i === 0 ? 'active' : ''}" data-title="${title}" onclick="goToSection(${i})"></div>
+            `).join('');
+        }
+
+        function goToSection(index) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(`section-${index}`).classList.add('active');
+            
+            document.querySelectorAll('.nav-dot').forEach((d, i) => {
+                d.classList.remove('active', 'completed');
+                if (i === index) d.classList.add('active');
+                if (i < index) d.classList.add('completed');
+            });
+            
+            currentSection = index;
+            updateProgress();
+            window.scrollTo(0, 0);
+
+            if (index === 11) {
+                calculateFinalResults();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentSection + 1) / 12) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+        }
+
+        function renderTFQuestions() {
+            const container = document.getElementById('tfContainer');
+            container.innerHTML = tfQuestions.map(q => `
+                <div class="question-block" id="tf-block-${q.id}">
+                    <div class="question-header-row">
+                        <div class="q-number">${q.id}</div>
+                        <div class="question-text">${q.text}</div>
+                        <span class="question-type">صح/خطأ</span>
+                    </div>
+                    <div class="answer-options">
+                        <button class="btn-option correct" onclick="answerTF(${q.id}, true)">
+                            <i class="fas fa-check"></i> صح
+                        </button>
+                        <button class="btn-option wrong" onclick="answerTF(${q.id}, false)">
+                            <i class="fas fa-times"></i> خطأ
+                        </button>
+                    </div>
+                    <div class="feedback-box" id="tf-feedback-${q.id}"></div>
+                </div>
+            `).join('');
+        }
+
+        function answerTF(id, answer) {
+            const q = tfQuestions.find(x => x.id === id);
+            const isCorrect = answer === q.answer;
+            const feedback = document.getElementById(`tf-feedback-${id}`);
+            
+            userAnswers.tf[id] = isCorrect ? 1 : 0;
+            
+            feedback.className = `feedback-box show ${isCorrect ? 'success' : 'error'}`;
+            feedback.innerHTML = `
+                <span class="feedback-icon">${isCorrect ? '✅' : '❌'}</span>
+                <div class="feedback-content">
+                    <strong>${isCorrect ? 'إجابة صحيحة!' : 'إجابة خاطئة'}</strong>
+                    ${!isCorrect && q.correction ? `<br>التصحيح: ${q.correction}` : ''}
+                </div>
+            `;
+
+            // Update button states
+            const buttons = document.querySelectorAll(`#tf-block-${id} .btn-option`);
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            event.target.closest('.btn-option').classList.add('selected');
+        }
+
+        function renderMCQQuestions() {
+            const container = document.getElementById('mcqContainer');
+            container.innerHTML = mcqQuestions.map(q => `
+                <div class="question-block" id="mcq-block-${q.id}">
+                    <div class="question-header-row">
+                        <div class="q-number">${q.id}</div>
+                        <div class="question-text">${q.text}</div>
+                        <span class="question-type">اختيار</span>
+                    </div>
+                    <div class="mcq-grid">
+                        ${q.options.map(opt => `
+                            <div class="mcq-option" onclick="answerMCQ(${q.id}, '${opt.letter}', ${opt.correct || false})">
+                                <span class="opt-letter">${opt.letter}</span>
+                                <span>${opt.text}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="feedback-box" id="mcq-feedback-${q.id}"></div>
+                </div>
+            `).join('');
+        }
+
+        function answerMCQ(qid, letter, isCorrect) {
+            const options = document.querySelectorAll(`#mcq-block-${qid} .mcq-option`);
+            options.forEach(opt => opt.classList.remove('selected', 'correct-answer', 'wrong-answer'));
+            
+            event.target.closest('.mcq-option').classList.add('selected');
+            if (isCorrect) {
+                event.target.closest('.mcq-option').classList.add('correct-answer');
+            } else {
+                event.target.closest('.mcq-option').classList.add('wrong-answer');
+                // Highlight correct answer
+                options.forEach(opt => {
+                    if (opt.textContent.includes(mcqQuestions.find(q => q.id === qid).options.find(o => o.correct).letter)) {
+                        opt.classList.add('correct-answer');
+                    }
+                });
+            }
+
+            userAnswers.mcq[qid] = isCorrect ? 1 : 0;
+
+            const feedback = document.getElementById(`mcq-feedback-${qid}`);
+            feedback.className = `feedback-box show ${isCorrect ? 'success' : 'error'}`;
+            feedback.innerHTML = `
+                <span class="feedback-icon">${isCorrect ? '✅' : '❌'}</span>
+                <div class="feedback-content">
+                    <strong>${isCorrect ? 'إجابة صحيحة!' : 'إجابة خاطئة'}</strong>
+                </div>
+            `;
+        }
+
+        function renderMiniQuiz() {
+            const container = document.getElementById('miniQuizContainer');
+            container.innerHTML = miniQuiz.map((q, i) => `
+                <div class="question-block">
+                    <div class="question-header-row">
+                        <div class="q-number" style="background: #ec4899;">${i + 1}</div>
+                        <div class="question-text">${q.q}</div>
+                    </div>
+                    <div class="mcq-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        ${q.a.map((ans, idx) => `
+                            <div class="mcq-option" onclick="answerMini(${i}, ${idx}, ${q.correct})">
+                                <span class="opt-letter">${['أ', 'ب', 'ج'][idx]}</span>
+                                <span>${ans}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="feedback-box" id="mini-feedback-${i}"></div>
+                </div>
+            `).join('');
+        }
+
+        function answerMini(qIdx, aIdx, correctIdx) {
+            const isCorrect = aIdx === correctIdx;
+            userAnswers.mini[qIdx] = isCorrect ? 1 : 0;
+            
+            const feedback = document.getElementById(`mini-feedback-${qIdx}`);
+            feedback.className = `feedback-box show ${isCorrect ? 'success' : 'error'}`;
+            feedback.innerHTML = `
+                <span class="feedback-icon">${isCorrect ? '✅' : '❌'}</span>
+                <div class="feedback-content">
+                    <strong>${isCorrect ? 'صحيح!' : 'حاول مرة أخرى'}</strong>
+                </div>
+            `;
+        }
+
+        function checkFillBlanks() {
+            const answers = {
+                blank1: ['71', '٧١'],
+                blank2: ['التجمّد', 'التجمد'],
+                blank3: ['الغلاف الحيوي', 'الحيوي'],
+                blank4: ['المياه الجوفية', 'المياه الجوفيه'],
+                blank5: ['الصخور المسامية', 'المسامية']
+            };
+
+            let score = 0;
+            for (let [id, validAnswers] of Object.entries(answers)) {
+                const input = document.getElementById(id);
+                const isCorrect = validAnswers.some(ans => input.value.trim().includes(ans));
+                
+                input.classList.remove('correct', 'wrong');
+                input.classList.add(isCorrect ? 'correct' : 'wrong');
+                
+                const feedback = document.getElementById(`feedback-${id.replace('blank', 'fill-')}`);
+                if (feedback) {
+                    feedback.className = `feedback-box show ${isCorrect ? 'success' : 'error'}`;
+                    feedback.innerHTML = `
+                        <span class="feedback-icon">${isCorrect ? '✅' : '❌'}</span>
+                        <div class="feedback-content">
+                            <strong>${isCorrect ? 'صحيح!' : `الإجابة: ${validAnswers[0]}`}</strong>
+                        </div>
+                    `;
+                }
+                
+                if (isCorrect) score++;
+            }
+            
+            userAnswers.fill = { score: score, total: 5 };
+        }
+
+        function checkTerms() {
+            const answers = {
+                term1: ['الذوبان', 'الانصهار'],
+                term2: ['التبخّر', 'التبخر'],
+                term3: ['النهر', 'الانهار'],
+                term4: ['المسامية', 'الصخور المسامية'],
+                term5: ['المياه الجوفية', 'المياه الجوفيه']
+            };
+
+            let score = 0;
+            for (let [id, validAnswers] of Object.entries(answers)) {
+                const input = document.getElementById(id);
+                const isCorrect = validAnswers.some(ans => input.value.trim().includes(ans));
+                
+                input.classList.remove('correct', 'wrong');
+                input.classList.add(isCorrect ? 'correct' : 'wrong');
+                
+                const feedback = document.getElementById(`feedback-${id}`);
+                if (feedback) {
+                    feedback.className = `feedback-box show ${isCorrect ? 'success' : 'error'}`;
+                    feedback.innerHTML = `
+                        <span class="feedback-icon">${isCorrect ? '✅' : '❌'}</span>
+                        <div class="feedback-content">
+                            <strong>${isCorrect ? 'صحيح!' : `الإجابة: ${validAnswers[0]}`}</strong>
+                        </div>
+                    `;
+                }
+                
+                if (isCorrect) score++;
+            }
+            
+            userAnswers.terms = { score: score, total: 5 };
+        }
+
+        function checkTrueFalse() {
+            const answered = Object.keys(userAnswers.tf).length;
+            alert(`لقد أجبت على ${answered} من 10 أسئلة. انتقل للقسم التالي!`);
+        }
+
+        function checkMCQ() {
+            const answered = Object.keys(userAnswers.mcq).length;
+            alert(`لقد أجبت على ${answered} من 7 أسئلة. انتقل للقسم التالي!`);
+        }
+
+        function checkMiniQuiz() {
+            const score = Object.values(userAnswers.mini).reduce((a, b) => a + b, 0);
+            alert(`نتيجة التحدي السريع: ${score} من 5!`);
+        }
+
+        function calculateFinalResults() {
+            // Calculate TF score
+            const tfScore = Object.values(userAnswers.tf).reduce((a, b) => a + b, 0);
+            
+            // Calculate MCQ score
+            const mcqScore = Object.values(userAnswers.mcq).reduce((a, b) => a + b, 0);
+            
+            // Get fill and terms scores
+            const fillScore = userAnswers.fill?.score || 0;
+            const termsScore = userAnswers.terms?.score || 0;
+            
+            // Mini quiz
+            const miniScore = Object.values(userAnswers.mini).reduce((a, b) => a + b, 0);
+            
+            // Total (approximate)
+            totalScore = tfScore + mcqScore + fillScore + termsScore + miniScore;
+            
+            // Update display
+            document.getElementById('scoreNumber').textContent = `${totalScore}/30`;
+            document.getElementById('scoreCircle').style.setProperty('--score-percent', (totalScore / 30) * 100);
+            
+            // Stars
+            let stars = '';
+            if (totalScore >= 25) stars = '⭐⭐⭐⭐⭐';
+            else if (totalScore >= 20) stars = '⭐⭐⭐⭐';
+            else if (totalScore >= 15) stars = '⭐⭐⭐';
+            else if (totalScore >= 10) stars = '⭐⭐';
+            else stars = '⭐';
+            
+            document.getElementById('starsDisplay').textContent = stars;
+            
+            // Achievements
+            document.querySelectorAll('.achievement-item').forEach(a => a.classList.remove('unlocked', 'locked'));
+            document.querySelectorAll('.achievement-item').forEach(a => a.classList.add('locked'));
+            
+            if (totalScore >= 25) {
+                document.getElementById('ach1').classList.remove('locked');
+                document.getElementById('ach1').classList.add('unlocked');
+            } else if (totalScore >= 20) {
+                document.getElementById('ach2').classList.remove('locked');
+                document.getElementById('ach2').classList.add('unlocked');
+            } else if (totalScore >= 15) {
+                document.getElementById('ach3').classList.remove('locked');
+                document.getElementById('ach3').classList.add('unlocked');
+            } else {
+                document.getElementById('ach4').classList.remove('locked');
+                document.getElementById('ach4').classList.add('unlocked');
+            }
+        }
+
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            item.classList.toggle('active');
+        }
+
+        function toggleDetails(type) {
+            const messages = {
+                bio: '🌱 الغلاف الحيوي: يشمل كل الكائنات الحية من أصغر بكتيريا حتى أكبر حيوان!',
+                hydro: '💧 الغلاف المائي: يغطي 71% من الأرض ويخزن الحرارة المناخية!',
+                atmo: '☁️ الغلاف الجوي: يحمينا من الأشعة الضارة والنيازك!',
+                litho: '⛰️ الغلاف الأرضي: يوفر المعادن والموارد الطبيعية!'
+            };
+            
+            // Create toast notification
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--primary-dark);
+                color: white;
+                padding: 1.5rem 2.5rem;
+                border-radius: 20px;
+                font-size: 1.1rem;
+                z-index: 10000;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                animation: fadeInUp 0.3s ease;
+                max-width: 90%;
+                text-align: center;
+            `;
+            toast.textContent = messages[type];
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function selectMatch(element, code) {
+            element.classList.toggle('selected');
+        }
+
+        function checkMatching() {
+            alert('تم التحقق! راجع نموذج الإجابات للتصحيح الكامل.');
+        }
+    </script>
+</body>
+</html>
