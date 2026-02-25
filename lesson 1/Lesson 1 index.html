@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>مغامرة العلوم الكبرى - الدرس الأول</title>
+   <style>
+       @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
+       
+       :root {
+           --primary: #1a237e;
+           --primary-dark: #0d1b3e;
+           --primary-light: #3949ab;
+           --accent-gold: #ffd700;
+           --accent-orange: #ff6b35;
+           --biosphere: #2e7d32;
+           --hydrosphere: #0277bd;
+           --atmosphere: #455a64;
+           --lithosphere: #5d4037;
+           --success: #4caf50;
+           --error: #f44336;
+           --dark: #2d3436;
+           --light: #f8f9fa;
+       }
+       
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+       }
+       
+       body {
+           font-family: 'Tajawal', sans-serif;
+           background: linear-gradient(180deg, #e8eaf6 0%, #c5cae9 50%, #e8eaf6 100%);
+           min-height: 100vh;
+           overflow-x: hidden;
+           color: var(--dark);
+           line-height: 1.8;
+       }
+       
+       .floating-icon {
+           position: fixed;
+           font-size: 2rem;
+           opacity: 0.15;
+           pointer-events: none;
+           animation: float-around 15s infinite ease-in-out;
+           z-index: 0;
+       }
+       
+       @keyframes float-around {
+           0%, 100% { transform: translate(0, 0) rotate(0deg); }
+           25% { transform: translate(30px, -30px) rotate(90deg); }
+           50% { transform: translate(-20px, 20px) rotate(180deg); }
+           75% { transform: translate(20px, 30px) rotate(270deg); }
+       }
+       
+       .header {
+           background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+           padding: 3rem 2rem;
+           text-align: center;
+           position: relative;
+           overflow: hidden;
+           box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+       }
+       
+       .header::before {
+           content: '🌍';
+           position: absolute;
+           font-size: 12rem;
+           opacity: 0.08;
+           left: 5%;
+           top: 50%;
+           transform: translateY(-50%);
+           animation: rotate-earth 20s infinite linear;
+       }
+       
+       @keyframes rotate-earth {
+           from { transform: translateY(-50%) rotate(0deg); }
+           to { transform: translateY(-50%) rotate(360deg); }
+       }
+       
+       .header h1 {
+           color: var(--accent-gold);
+           font-size: 3rem;
+           font-weight: 900;
+           text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+           position: relative;
+           z-index: 1;
+       }
+       
+       .header .subtitle {
+           color: rgba(255,255,255,0.95);
+           font-size: 1.3rem;
+           margin-top: 1rem;
+       }
+       
+       .header .badge {
+           display: inline-block;
+           background: rgba(255,255,255,0.2);
+           padding: 0.5rem 1.5rem;
+           border-radius: 50px;
+           margin-top: 1rem;
+           font-size: 0.95rem;
+           backdrop-filter: blur(10px);
+           color: white;
+       }
+       
+       .story-container {
+           max-width: 1000px;
+           margin: 0 auto;
+           padding: 2rem 1.5rem;
+           position: relative;
+           z-index: 1;
+       }
+       
+       .scene-card {
+           background: white;
+           border-radius: 25px;
+           padding: 2.5rem;
+           margin-bottom: 2.5rem;
+           box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+           position: relative;
+           overflow: hidden;
+           transition: all 0.4s ease;
+           border-right: 6px solid transparent;
+       }
+       
+       .scene-card:nth-child(4n+1) { border-right-color: var(--biosphere); }
+       .scene-card:nth-child(4n+2) { border-right-color: var(--hydrosphere); }
+       .scene-card:nth-child(4n+3) { border-right-color: var(--atmosphere); }
+       .scene-card:nth-child(4n+4) { border-right-color: var(--lithosphere); }
+       
+       .scene-card:hover {
+           transform: translateY(-8px);
+           box-shadow: 0 30px 80px rgba(0,0,0,0.18);
+       }
+       
+       .character-banner {
+           display: flex;
+           align-items: center;
+           gap: 1.5rem;
+           margin-bottom: 2rem;
+           padding-bottom: 1.5rem;
+           border-bottom: 2px dashed #e0e0e0;
+       }
+       
+       .character-avatar {
+           width: 90px;
+           height: 90px;
+           border-radius: 50%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           font-size: 3rem;
+           flex-shrink: 0;
+           box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+           animation: character-bounce 2s infinite ease-in-out;
+       }
+       
+       @keyframes character-bounce {
+           0%, 100% { transform: translateY(0); }
+           50% { transform: translateY(-10px); }
+       }
+       
+       .character-biosphere { background: linear-gradient(135deg, var(--biosphere) 0%, #1b5e20 100%); }
+       .character-hydrosphere { background: linear-gradient(135deg, var(--hydrosphere) 0%, #01579b 100%); }
+       .character-atmosphere { background: linear-gradient(135deg, var(--atmosphere) 0%, #263238 100%); }
+       .character-lithosphere { background: linear-gradient(135deg, var(--lithosphere) 0%, #3e2723 100%); }
+       .character-hero { background: linear-gradient(135deg, var(--accent-orange) 0%, #e65100 100%); }
+       
+       .character-info h3 {
+           font-size: 1.4rem;
+           font-weight: 800;
+           color: var(--dark);
+           margin-bottom: 0.3rem;
+       }
+       
+       .character-role {
+           color: #666;
+           font-size: 0.95rem;
+       }
+       
+       .dialogue-box {
+           background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+           padding: 2rem;
+           border-radius: 20px;
+           position: relative;
+           font-size: 1.15rem;
+           line-height: 2;
+           border-right: 5px solid;
+       }
+       
+       .dialogue-box::before {
+           content: '"';
+           position: absolute;
+           top: -5px;
+           right: 20px;
+           font-size: 5rem;
+           color: inherit;
+           opacity: 0.2;
+           font-family: Georgia, serif;
+       }
+       
+       .dialogue-box.biosphere { border-right-color: var(--biosphere); color: #1b5e20; }
+       .dialogue-box.hydrosphere { border-right-color: var(--hydrosphere); color: #01579b; }
+       .dialogue-box.atmosphere { border-right-color: var(--atmosphere); color: #263238; }
+       .dialogue-box.lithosphere { border-right-color: var(--lithosphere); color: #3e2723; }
+       .dialogue-box.hero { border-right-color: var(--accent-orange); color: #e65100; }
+       
+       .discovery-box {
+           background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+           color: white;
+           padding: 1.8rem;
+           border-radius: 18px;
+           margin: 2rem 0;
+           cursor: pointer;
+           transition: all 0.3s ease;
+       }
+       
+       .discovery-box:hover {
+           transform: scale(1.02);
+       }
+       
+       .discovery-box.active {
+           background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+       }
+       
+       .discovery-title {
+           font-size: 1.2rem;
+           font-weight: 700;
+           margin-bottom: 0.5rem;
+           color: var(--accent-gold);
+       }
+       
+       .discovery-content {
+           display: none;
+           margin-top: 1.5rem;
+           padding-top: 1.5rem;
+           border-top: 2px dashed rgba(255,215,0,0.3);
+       }
+       
+       .discovery-box.active .discovery-content {
+           display: block;
+           animation: reveal 0.5s ease;
+       }
+       
+       @keyframes reveal {
+           from { opacity: 0; transform: translateY(-20px); }
+           to { opacity: 1; transform: translateY(0); }
+       }
+       
+       .concept-showcase {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+           gap: 1.5rem;
+           margin: 2rem 0;
+       }
+       
+       .concept-item {
+           background: white;
+           border-radius: 20px;
+           padding: 1.8rem 1.2rem;
+           text-align: center;
+           box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+           transition: all 0.4s ease;
+           cursor: pointer;
+       }
+       
+       .concept-item:hover {
+           transform: translateY(-10px);
+           box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+       }
+       
+       .concept-icon-wrap {
+           width: 80px;
+           height: 80px;
+           border-radius: 50%;
+           margin: 0 auto 1rem;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           font-size: 2.5rem;
+       }
+       
+       .compare-table {
+           width: 100%;
+           border-collapse: separate;
+           border-spacing: 0;
+           margin: 2rem 0;
+           border-radius: 15px;
+           overflow: hidden;
+           box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+       }
+       
+       .compare-table th {
+           background: var(--primary);
+           color: white;
+           padding: 1.2rem;
+           font-weight: 700;
+           text-align: right;
+       }
+       
+       .compare-table td {
+           padding: 1.2rem;
+           background: white;
+           border-bottom: 1px solid #e0e0e0;
+       }
+       
+       .compare-table tr:nth-child(even) td {
+           background: #f8f9fa;
+       }
+       
+       .activity-zone {
+           background: linear-gradient(135deg, var(--accent-orange) 0%, #e65100 100%);
+           color: white;
+           padding: 2.5rem;
+           border-radius: 25px;
+           margin: 2rem 0;
+       }
+       
+       .activity-title {
+           font-size: 1.5rem;
+           font-weight: 800;
+           margin-bottom: 1rem;
+       }
+       
+       .quiz-arena {
+           background: white;
+           border-radius: 30px;
+           padding: 3rem;
+           margin: 3rem 0;
+           box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+       }
+       
+       .quiz-header {
+           text-align: center;
+           margin-bottom: 3rem;
+           padding-bottom: 2rem;
+           border-bottom: 4px solid;
+           border-image: linear-gradient(90deg, var(--biosphere), var(--hydrosphere), var(--atmosphere), var(--lithosphere)) 1;
+       }
+       
+       .quiz-header h2 {
+           font-size: 2.2rem;
+           color: var(--dark);
+           font-weight: 900;
+       }
+       
+       .question-block {
+           background: #f8f9fa;
+           padding: 2rem;
+           border-radius: 20px;
+           margin-bottom: 1.5rem;
+           border-right: 5px solid var(--accent-orange);
+       }
+       
+       .question-header {
+           display: flex;
+           align-items: flex-start;
+           gap: 1rem;
+           margin-bottom: 1.5rem;
+       }
+       
+       .q-number {
+           width: 45px;
+           height: 45px;
+           border-radius: 50%;
+           background: var(--accent-orange);
+           color: white;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           font-weight: 800;
+           font-size: 1.1rem;
+           flex-shrink: 0;
+       }
+       
+       .q-text {
+           font-size: 1.15rem;
+           font-weight: 600;
+           color: var(--dark);
+           line-height: 1.7;
+           padding-top: 0.5rem;
+       }
+       
+       .answers-grid {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+           gap: 1rem;
+       }
+       
+       .answer-option {
+           background: white;
+           padding: 1.2rem 1.5rem;
+           border-radius: 15px;
+           border: 3px solid #e0e0e0;
+           cursor: pointer;
+           transition: all 0.3s ease;
+           font-size: 1rem;
+           text-align: right;
+       }
+       
+       .answer-option:hover {
+           border-color: var(--primary);
+           transform: translateY(-3px);
+       }
+       
+       .answer-option.correct {
+           background: #d4edda;
+           border-color: #28a745;
+           color: #155724;
+       }
+       
+       .answer-option.wrong {
+           background: #f8d7da;
+           border-color: #dc3545;
+           color: #721c24;
+       }
+       
+       .answer-option.disabled {
+           pointer-events: none;
+           opacity: 0.7;
+       }
+       
+       .results-panel {
+           position: fixed;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%) scale(0);
+           background: white;
+           padding: 3rem;
+           border-radius: 30px;
+           box-shadow: 0 50px 100px rgba(0,0,0,0.4);
+           text-align: center;
+           z-index: 1000;
+           transition: transform 0.6s ease;
+           max-width: 90%;
+           width: 500px;
+       }
+       
+       .results-panel.show {
+           transform: translate(-50%, -50%) scale(1);
+       }
+       
+       .trophy {
+           font-size: 6rem;
+           margin-bottom: 1rem;
+           animation: trophy-bounce 1s infinite alternate;
+       }
+       
+       @keyframes trophy-bounce {
+           from { transform: scale(1) rotate(-10deg); }
+           to { transform: scale(1.1) rotate(10deg); }
+       }
+       
+       .progress-track {
+           position: sticky;
+           top: 0;
+           z-index: 100;
+           background: rgba(255,255,255,0.95);
+           backdrop-filter: blur(10px);
+           padding: 1rem 2rem;
+           box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+       }
+       
+       .progress-line {
+           height: 10px;
+           background: #e0e0e0;
+           border-radius: 10px;
+           overflow: hidden;
+       }
+       
+       .progress-fill {
+           height: 100%;
+           background: linear-gradient(90deg, var(--biosphere), var(--hydrosphere), var(--atmosphere), var(--lithosphere));
+           width: 0%;
+           transition: width 0.5s ease;
+       }
+       
+       .nav-floating {
+           position: fixed;
+           bottom: 2rem;
+           left: 2rem;
+           display: flex;
+           gap: 1rem;
+           z-index: 99;
+       }
+       
+       .fab {
+           width: 60px;
+           height: 60px;
+           border-radius: 50%;
+           border: none;
+           background: var(--primary);
+           color: white;
+           font-size: 1.5rem;
+           cursor: pointer;
+           box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+           transition: all 0.3s ease;
+       }
+       
+       .fab:hover {
+           transform: scale(1.1);
+           background: var(--accent-orange);
+       }
+       
+       .nav-buttons {
+           display: flex;
+           justify-content: space-between;
+           margin-top: 3rem;
+           gap: 1rem;
+       }
+
+       .btn-nav {
+           padding: 1rem 2rem;
+           border: none;
+           border-radius: 12px;
+           font-family: 'Tajawal', sans-serif;
+           font-weight: 700;
+           font-size: 1.1rem;
+           cursor: pointer;
+           transition: all 0.3s ease;
+           display: flex;
+           align-items: center;
+           gap: 0.5rem;
+       }
+
+       .btn-prev {
+           background: rgba(26, 35, 126, 0.2);
+           color: var(--primary);
+       }
+
+       .btn-prev:hover {
+           background: rgba(26, 35, 126, 0.3);
+       }
+
+       .btn-next {
+           background: var(--accent-gold);
+           color: var(--primary-dark);
+       }
+
+       .btn-next:hover {
+           transform: translateX(-5px);
+           box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+       }
+       
+       .sphere-highlight {
+           display: inline-block;
+           padding: 0.2rem 0.5rem;
+           border-radius: 8px;
+           font-weight: 700;
+           margin: 0 0.2rem;
+       }
+       
+       .sphere-highlight.biosphere { background: #e8f5e9; color: #1b5e20; }
+       .sphere-highlight.hydrosphere { background: #e1f5fe; color: #01579b; }
+       .sphere-highlight.atmosphere { background: #eceff1; color: #263238; }
+       .sphere-highlight.lithosphere { background: #efebe9; color: #3e2723; }
+       
+       @media print {
+           .discovery-box .discovery-content { display: block !important; }
+           .nav-floating, .progress-track { display: none; }
+           .scene-card { break-inside: avoid; }
+       }
+       
+       @media (max-width: 768px) {
+           .header h1 { font-size: 2rem; }
+           .scene-card { padding: 1.5rem; }
+           .character-banner { flex-direction: column; text-align: center; }
+           .quiz-arena { padding: 1.5rem; }
+           .answers-grid { grid-template-columns: 1fr; }
+       }
+   </style>
+</head>
+<body>
+   <div class="floating-icon" style="top: 10%; right: 5%;">🌍</div>
+   <div class="floating-icon" style="top: 30%; left: 8%; animation-delay: 2s;">💧</div>
+   <div class="floating-icon" style="top: 50%; right: 10%; animation-delay: 4s;">🌱</div>
+   <div class="floating-icon" style="top: 70%; left: 5%; animation-delay: 6s;">☁️</div>
+   
+   <div class="progress-track">
+       <div class="progress-line">
+           <div class="progress-fill" id="progressBar"></div>
+       </div>
+   </div>
+   
+   <header class="header">
+       <h1>🌍 مغامرة العلوم الكبرى</h1>
+       <p class="subtitle">الدرس الأول: التفاعلات بين الغلاف الحيوي والغلاف المائي</p>
+       <span class="badge">🔬 رحلة علمية تفاعلية | الصف الخامس</span>
+   </header>
+   
+   <main class="story-container">
+       
+       <!-- Scene 1: Introduction -->
+       <article class="scene-card" id="scene1">
+           <div class="character-banner">
+               <div class="character-avatar character-hero">👨‍🚀</div>
+               <div class="character-info">
+                   <h3>رائد الفضاء - عائد من المريخ</h3>
+                   <div class="character-role">🚀 شاهد كوكب الأرض من الفضاء</div>
+               </div>
+           </div>
+           
+           <div class="dialogue-box hero">
+               <p>في أحد أيام العطلة، كان <strong>رائد الفضاء البطل</strong> عائداً من رحلة طويلة إلى المريخ الأحمر الجاف... وفجأة تلمع أمامه كرة زرقاء رائعة في الظلام تتلألأ كالجوهر! إنها الأرض - كوكب الحياة والماء الوحيد في نظامنا الشمسي!</p>
+               <p>"أربعة أغلفة سحرية تتعاون معاً" همس لنفسه. "لكن عندما تتعاون، يحدث العجب!"</p>
+           </div>
+           
+           <div class="discovery-box" onclick="this.classList.toggle('active')">
+               <div class="discovery-title">🗺️ اكتشف: ما هي الأغلفة الأربعة؟</div>
+               <div class="discovery-content">
+                   <p>كوكب الأرض مثل بيضة مقسمة إلى طبقات، لكننا نرى فقط القشرة الخارجية. هذه الطبقات تسمى <strong>الأغلفة</strong>:</p>
+                   <ul style="margin-top: 1rem; padding-right: 1.5rem; line-height: 2.2;">
+                       <li><strong class="sphere-highlight biosphere">الغلاف الحيوي (Biosphere):</strong> جميع الكائنات الحية</li>
+                       <li><strong class="sphere-highlight hydrosphere">الغلاف المائي (Hydrosphere):</strong> كل الماء على الأرض</li>
+                       <li><strong class="sphere-highlight atmosphere">الغلاف الجوي (Atmosphere):</strong> طبقة الغازات المحيطة</li>
+                       <li><strong class="sphere-highlight lithosphere">الغلاف الأرضي (Lithosphere):</strong> الصخور والتربة</li>
+                   </ul>
+               </div>
+           </div>
+       </article>
+       
+       <!-- Scene 2: Biosphere -->
+       <article class="scene-card" id="scene2">
+           <div class="character-banner">
+               <div class="character-avatar character-biosphere">🌱</div>
+               <div class="character-info">
+                   <h3>الملك الحيوي - رقصة الحياة</h3>
+                   <div class="character-role">🦋 يجمع كل الكائنات الحية</div>
+               </div>
+           </div>
+           
+           <div class="dialogue-box biosphere">
+               <p>"أنا الملك الحيوي!" قال وهو يرقص مع الفراشات والطيور. "أنا لست مكاناً واحداً، أنا <strong>كلwhere</strong> توجد فيه حياة!"</p>
+               <p>"أعيش في قاع المحيط العميق، وعلى قمة الجبال الشاهقة، وفي الهواء، وداخل تربتك. أنا الشجرة التي تتنفس، والبكتيريا التي تحلل الموتى، وأنت يا بطل!"</p>
+           </div>
+           
+           <div class="concept-showcase">
+               <div class="concept-item" onclick="showDetail('bio1')">
+                   <div class="concept-icon-wrap" style="background: #e8f5e9; color: #2e7d32;">🧑‍🤝‍🧑</div>
+                   <h4>الإنسان</h4>
+                   <p>أنت جزء من الغلاف الحيوي!</p>
+               </div>
+               <div class="concept-item" onclick="showDetail('bio2')">
+                   <div class="concept-icon-wrap" style="background: #c8e6c9; color: #388e3c;">🦁</div>
+                   <h4>الحيوانات</h4>
+                   <p>تعيش في البر والبحر والجو</p>
+               </div>
+               <div class="concept-item" onclick="showDetail('bio3')">
+                   <div class="concept-icon-wrap" style="background: #a5d6a7; color: #43a047;">🌳</div>
+                   <h4>النباتات</h4>
+                   <p>تنتج الأكسجين والغذاء</p>
+               </div>
+               <div class="concept-item" onclick="showDetail('bio4')">
+                   <div class="concept-icon-wrap" style="background: #81c784; color: #2e7d32;">🦠</div>
+                   <h4>الكائنات الدقيقة</h4>
+                   <p>بكتيريا وفطريات وفيروسات</p>
+               </div>
+           </div>
+           
+           <div class="discovery-box" onclick="this.classList.toggle('active')">
+               <div class="discovery-title">🔍 اكتشف: لماذا يحتاج الغلاف الحيوي للماء؟</div>
+               <div class="discovery-content">
+                   <p><strong>الماء = قود الحياة السحري!</strong></p>
+                   <ul style="margin-top: 1rem; padding-right: 1.5rem; line-height: 2;">
+                       <li>🐟 <strong>موطن الكائنات البحرية:</strong> الأسماك والطحالب تعيش فيه</li>
+                       <li>🥤 <strong>الشرب:</strong> جسم الإنسان 60-70% ماء!</li>
+                       <li>🌳 <strong>البناء الضوئي:</strong> النباتات تصنع غذاءها من الماء + الشمس + CO₂</li>
+                       <li>🧼 <strong>النظافة:</strong> تنظيف البيئة والقضاء على الجراثيم</li>
+                   </ul>
+               </div>
+           </div>
+       </article>
+       
+       <!-- Scene 3: Hydrosphere -->
+       <article class="scene-card" id="scene3">
+           <div class="character-banner">
+               <div class="character-avatar character-hydrosphere">🌊</div>
+               <div class="character-info">
+                   <h3>الملكة المائية - أم الحياة</h3>
+                   <div class="character-role">💧 تغطي 71% من سطح الأرض</div>
+               </div>
+           </div>
+           
+           <div class="dialogue-box hydrosphere">
+               <p>"أنا الملكة المائية!" تغنت بصوت كموج البحر. "أنا في المحيطات العميقة، والأنهار الجارية، والغيوم العائمة، وحتى في جسمك!"</p>
+               <p>"بدوني، تذبل النباتات وتموت الحيوانات. أنا وسيلة النقل للمواد الغذائية، وأغسل الأرض من التلوث. أنا سرّ الحياة!"</p>
+           </div>
+           
+           <table class="compare-table">
+               <tr>
+                   <th>نوع الماء</th>
+                   <th>النسبة</th>
+                   <th>الأهمية</th>
+               </tr>
+               <tr>
+                   <td>🌊 المحيطات والبحار</td>
+                   <td>97%</td>
+                   <td>تنظيم المناخ، موطن للكائنات البحرية</td>
+               </tr>
+               <tr>
+                   <td>🏔️ الجليد والأنهار الجليدية</td>
+                   <td>2%</td>
+                   <td>خزان مائي، انعكاس لأشعة الشمس</td>
+               </tr>
+               <tr>
+                   <td>💧 المياه العذبة (أنهار، بحيرات)</td>
+                   <td>1%</td>
+                   <td>شرب الإنسان والحيوان، الري</td>
+               </tr>
+               <tr>
+                   <td>☁️ بخار الماء في الجو</td>
+                   <td>ضئيلة</td>
+                   <td>تكوين الغيوم والمطر</td>
+               </tr>
+           </table>
+           
+           <div class="activity-zone">
+               <div class="activity-title">🧪 نشاط: دورة الماء في زجاجة</div>
+               <p>ضع ماءً في زجاجة شفافة، أغلقها بإحكام، وضعها في الشمس. سترى قطرات تتكون على الجدران!</p>
+               <p><strong>ما يحدث:</strong> التبخر ← التكاثف ← الهطول (مصغر)</p>
+           </div>
+       </article>
+       
+       <!-- Scene 4: Water States -->
+       <article class="scene-card" id="scene4">
+           <div class="character-banner">
+               <div class="character-avatar character-hydrosphere">💧</div>
+               <div class="character-info">
+                   <h3>الماء العبقري - 3 أزياء مختلفة!</h3>
+                   <div class="character-role">🧪 يغيّر حالته لكنه لا يختفي</div>
+               </div>
+           </div>
+           
+           <div class="dialogue-box hydrosphere">
+               <p>"الأنهار تصبّ في البحر طوال اليوم... والشمس تبخّرني طوال الوقت... فأين أذهب؟!"</p>
+               <p>"🌍 <strong>الحقيقة العجيبة:</strong> كمية الماء على الأرض <strong>ثابتة لا تتغيّر أبداً</strong> — فقط حالتي تتغيّر من صلب إلى سائل إلى غاز!"</p>
+           </div>
+           
+           <div class="concept-showcase">
+               <div class="concept-item" style="background: linear-gradient(135deg, #00695c 0%, #004d40 100%); color: white;">
+                   <div class="concept-icon-wrap" style="background: rgba(255,255,255,0.2); font-size: 3rem;">☁️</div>
+                   <h4 style="color: var(--accent-gold);">غاز (بخار)</h4>
+                   <p>التبخّر ← حرارة الشمس</p>
+                   <small>أرتفع للسماء!</small>
+               </div>
+               <div class="concept-item" style="background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%); color: white;">
+                   <div class="concept-icon-wrap" style="background: rgba(255,255,255,0.2); font-size: 3rem;">💧</div>
+                   <h4 style="color: var(--accent-gold);">سائل</h4>
+                   <p>الحالة الطبيعية</p>
+                   <small>في الأنهار والبحار</small>
+               </div>
+               <div class="concept-item" style="background: linear-gradient(135deg, #455a64 0%, #37474f 100%); color: white;">
+                   <div class="concept-icon-wrap" style="background: rgba(255,255,255,0.2); font-size: 3rem;">🧊</div>
+                   <h4 style="color: var(--accent-gold);">صلب (ثلج)</h4>
+                   <p>التجمّد ← برودة</p>
+                   <small>على قمم الجبال</small>
+               </div>
+           </div>
+           
+           <div class="discovery-box" onclick="this.classList.toggle('active')">
+               <div class="discovery-title">🔄 اكتشف: دورة الماء في الطبيعة</div>
+               <div class="discovery-content">
+                   <p style="text-align: center; font-size: 1.3rem; line-height: 2.5;">
+                       ☀️ <strong>الشمس</strong> تسخن المياه ← 
+                       💨 <strong>التبخّر</strong> يرتفع بخار الماء ← 
+                       ☁️ <strong>التكاثف</strong> يتبّرد ويصبح سحاباً ← 
+                       🌧️ <strong>الهطول</strong> يسقط مطراً ← 
+                       🏔️ <strong>التجمّع</strong> في أنهار وبحار ← 
+                       🔁 <strong>الدورة</strong> تتكرر!
+                   </p>
+               </div>
+           </div>
+       </article>
+       
+       <!-- Scene 5: Lithosphere & Atmosphere -->
+       <article class="scene-card" id="scene5">
+           <div class="character-banner">
+               <div class="character-avatar character-lithosphere">⛰️</div>
+               <div class="character-info">
+                   <h3>الملك الأرضي - حامي الأساس</h3>
+                   <div class="character-role">🪨 يحمل كل شيء على كتفيه</div>
+               </div>
+           </div>
+           
+           <div class="dialogue-box lithosphere">
+               <p>"أنا الملك الأرضي!" قال بصوت عميق كالرعد. "أنا الأرض الصلبة التي تمشي عليها. أحمل الجبال والوديان في حضني."</p>
+               <p>"لكنني لست مجرد صخور! أخزن <strong>الماء الجوفي</strong> في باطني، وأطلع المعادن للنباتات. بدوني، لا يوجد مكان للحياة!"</p>
+           </div>
+           
+           <div class="concept-showcase">
+               <div class="concept-item" onclick="showDetail('litho1')">
+                   <div class="concept-icon-wrap" style="background: #efebe9; color: #5d4037;">🏔️</div>
+                   <h4>الجبال</h4>
+                   <p>تخزن الثلوج والمياه</p>
+               </div>
+               <div class="concept-item" onclick="showDetail('litho2')">
+                   <div class="concept-icon-wrap" style="background: #d7ccc8; color: #4e342e;">🪨</div>
+                   <h4>الصخور المسامية</h4>
+                   <p>كالإسفنج تخزن الماء</p>
+               </div>
+               <div class="concept-item" onclick="showDetail('litho3')">
+                   <div class="concept-icon-wrap" style="background: #bcaaa4; color: #3e2723;">💎</div>
+                   <h4>المعادن</h4>
+                   <p>تغذي النباتات</p>
+               </div>
+               <div class="concept-item" onclick="showDetail('litho4')">
+                   <div class="concept-icon-wrap" style="background: #a1887f; color: #3e2723;">💧</div>
+                   <h4>المياه الجوفية</h4>
+                   <p>مخزون تحت الأرض</p>
+               </div>
+           </div>
+           
+           <div class="character-banner" style="margin-top: 3rem;">
+               <div class="character-avatar character-atmosphere">☁️</div>
+               <div class="character-info">
+                   <h3>الملك الجوي - الدرع الواقي</h3>
+                   <div class="character-role">🛡️ يحمي الأرض من الأخطار الفضائية</div>
+               </div>
+           </div>
+           
+           <div class="dialogue-box atmosphere">
+               <p>"أنا الملك الجوي!" قال وهو يحيط بالأرض بأحضانه الغازية. "أنا غير مرئي لكنني حيوي. أحفظ الأرض دافئة كالدفيئة، وأمنع الأشعة الضارة."</p>
+               <p>"أحتوي على <strong>21% أكسجين</strong> للتنفس، و<strong>78% نيتروجين</strong> للنباتات. بدوني، ستكون الأرض كالقمر: بارد، جاف، مشع، بلا حياة!"</p>
+           </div>
+       </article>
+       
+       <!-- Scene 6: The Interaction -->
+       <article class="scene-card" id="scene6">
+           <div class="character-banner">
+               <div class="character-avatar character-hero">🤝</div>
+               <div class="character-info">
+                   <h3>الملوك الأربعة - اجتماع العمالقة</h3>
+                   <div class="character-role">🌐 التعاون يصنع المعجزات</div>
+               </div>
+           </div>
+           
+           <div class="dialogue-box hero">
+               <p>اجتمعت الملوك الأربعة في قمة عظيمة. قال <span class="sphere-highlight lithosphere">الملك الأرضي</span>: "أنا أقدم الأساس." 
+               قالت <span class="sphere-highlight hydrosphere">الملكة المائية</span>: "أنا أجلب الحياة." 
+               قال <span class="sphere-highlight biosphere">الملك الحيوي</span>: "أنا أنشر الحياة." 
+               قال <span class="sphere-highlight atmosphere">الملك الجوي</span>: "أنا أحمي الجميع."</p>
+               <p>ثم قالوا معاً: <strong>"لكننا بدون بعضنا البعض لا شيء!"</strong></p>
+           </div>
+           
+           <div class="activity-zone">
+               <div class="activity-title">🎯 لعبة التفاعل: اربط كل غلاف بوظيفته</div>
+               <div style="display: grid; gap: 1rem; margin-top: 1.5rem;">
+                   <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 10px;">
+                       <strong>🌧️ المطر:</strong> <span class="sphere-highlight atmosphere">الغلاف الجوي</span> (تكاثف) + <span class="sphere-highlight hydrosphere">الغلاف المائي</span> (تبخر)
+                   </div>
+                   <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 10px;">
+                       <strong>🌱 نمو النبات:</strong> <span class="sphere-highlight lithosphere">الغلاف الأرضي</span> (معادن) + <span class="sphere-highlight hydrosphere">الغلاف المائي</span> (ري) + <span class="sphere-highlight atmosphere">الغلاف الجوي</span> (CO₂) + <span class="sphere-highlight biosphere">الغلاف الحيوي</span> (البذرة)
+                   </div>
+                   <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 10px;">
+                       <strong>🐟 الأسماك:</strong> تعيش في <span class="sphere-highlight hydrosphere">الماء</span>، تتنفس <span class="sphere-highlight atmosphere">الأكسجين</span>، تتغذى من <span class="sphere-highlight biosphere">الطحالب</span>، تستقر على <span class="sphere-highlight lithosphere">قاع البحر</span>
+                   </div>
+               </div>
+           </div>
+       </article>
+       
+       <!-- Scene 7: Quiz Section -->
+       <article class="scene-card" id="scene7">
+           <div class="quiz-arena">
+               <div class="quiz-header">
+                   <h2>🏆 اختبر معلوماتك</h2>
+                   <p>أجب على الأسئلة التالية لتصبح <strong>عالم أغلفة الأرض</strong>!</p>
+               </div>
+               
+               <div class="question-block" data-correct="b">
+                   <div class="question-header">
+                       <div class="q-number">1</div>
+                       <div class="q-text">أي الغلافات يحتوي على كل الماء على الأرض (محيطات، أنهار، غيوم)؟</div>
+                   </div>
+                   <div class="answers-grid">
+                       <div class="answer-option" data-value="a">الغلاف الأرضي</div>
+                       <div class="answer-option" data-value="b">الغلاف المائي</div>
+                       <div class="answer-option" data-value="c">الغلاف الجوي</div>
+                       <div class="answer-option" data-value="d">الغلاف الحيوي</div>
+                   </div>
+               </div>
+               
+               <div class="question-block" data-correct="c">
+                   <div class="question-header">
+                       <div class="q-number">2</div>
+                       <div class="q-text">ما هي نسبة مساحة الماء على سطح الأرض تقريباً؟</div>
+                   </div>
+                   <div class="answers-grid">
+                       <div class="answer-option" data-value="a">50%</div>
+                       <div class="answer-option" data-value="b">60%</div>
+                       <div class="answer-option" data-value="c">71%</div>
+                       <div class="answer-option" data-value="d">80%</div>
+                   </div>
+               </div>
+               
+               <div class="question-block" data-correct="a">
+                   <div class="question-header">
+                       <div class="q-number">3</div>
+                       <div class="q-text">عملية تحوّل الماء من سائل إلى غاز تُسمّى:</div>
+                   </div>
+                   <div class="answers-grid">
+                       <div class="answer-option" data-value="a">التبخّر</div>
+                       <div class="answer-option" data-value="b">التجمّد</div>
+                       <div class="answer-option" data-value="c">التكاثف</div>
+                       <div class="answer-option" data-value="d">الهطول</div>
+                   </div>
+               </div>
+               
+               <div class="question-block" data-correct="d">
+                   <div class="question-header">
+                       <div class="q-number">4</div>
+                       <div class="q-text">الصخور التي تسمح بتسرّب الماء خلالها تُسمّى:</div>
+                   </div>
+                   <div class="answers-grid">
+                       <div class="answer-option" data-value="a">الصخور النارية</div>
+                       <div class="answer-option" data-value="b">الصخور المتحولة</div>
+                       <div class="answer-option" data-value="c">الصخور الرسوبية</div>
+                       <div class="answer-option" data-value="d">الصخور المسامية</div>
+                   </div>
+               </div>
+               
+               <div class="question-block" data-correct="b">
+                   <div class="question-header">
+                       <div class="q-number">5</div>
+                       <div class="q-text">أي مما يلي يُعدّ نشاطاً اقتصادياً يعتمد على الغلاف المائي؟</div>
+                   </div>
+                   <div class="answers-grid">
+                       <div class="answer-option" data-value="a">قطع الأشجار</div>
+                       <div class="answer-option" data-value="b">الزراعة وري المزروعات</div>
+                       <div class="answer-option" data-value="c">استخراج المعادن</div>
+                       <div class="answer-option" data-value="d">تربية الماشية</div>
+                   </div>
+               </div>
+               
+               <div style="text-align: center; margin-top: 2rem;">
+                   <button onclick="calculateScore()" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: white; border: none; padding: 1.2rem 3rem; border-radius: 50px; font-size: 1.2rem; font-weight: 700; cursor: pointer; box-shadow: 0 10px 30px rgba(26, 35, 126, 0.4); transition: all 0.3s ease;">
+                       انتهيت! أظهر نتيجتي 🎯
+                   </button>
+               </div>
+           </div>
+       </article>
+       
+       <!-- Scene 8: Key Terms -->
+       <article class="scene-card" id="scene8">
+           <div class="character-banner">
+               <div class="character-avatar character-hero">📖</div>
+               <div class="character-info">
+                   <h3>المعجم العلمي</h3>
+                   <div class="character-role">🎓 المصطلحات الذهبية للدرس</div>
+               </div>
+           </div>
+           
+           <div class="concept-showcase">
+               <div class="concept-item" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-top: 4px solid var(--biosphere);">
+                   <div class="concept-icon-wrap" style="background: var(--biosphere); color: white;">🌱</div>
+                   <h4 style="color: var(--biosphere);">الغلاف الحيوي</h4>
+                   <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">Biosphere</div>
+                   <p style="font-size: 0.9rem;">جميع الكائنات الحية: إنسان، حيوان، نبات، كائنات دقيقة</p>
+               </div>
+               
+               <div class="concept-item" style="background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%); border-top: 4px solid var(--hydrosphere);">
+                   <div class="concept-icon-wrap" style="background: var(--hydrosphere); color: white;">🌊</div>
+                   <h4 style="color: var(--hydrosphere);">الغلاف المائي</h4>
+                   <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">Hydrosphere</div>
+                   <p style="font-size: 0.9rem;">جميع المياه: بحار، أنهار، بحيرات، مياه جوفية، ثلج</p>
+               </div>
+               
+               <div class="concept-item" style="background: linear-gradient(135deg, #eceff1 0%, #cfd8dc 100%); border-top: 4px solid var(--atmosphere);">
+                   <div class="concept-icon-wrap" style="background: var(--atmosphere); color: white;">☁️</div>
+                   <h4 style="color: var(--atmosphere);">الغلاف الجوي</h4>
+                   <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">Atmosphere</div>
+                   <p style="font-size: 0.9rem;">طبقة الغازات: أكسجين 21%، نيتروجين 78%</p>
+               </div>
+               
+               <div class="concept-item" style="background: linear-gradient(135deg, #efebe9 0%, #d7ccc8 100%); border-top: 4px solid var(--lithosphere);">
+                   <div class="concept-icon-wrap" style="background: var(--lithosphere); color: white;">⛰️</div>
+                   <h4 style="color: var(--lithosphere);">الغلاف الأرضي</h4>
+                   <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">Lithosphere</div>
+                   <p style="font-size: 0.9rem;">الصخور والتربة والرمال والمعادن</p>
+               </div>
+               
+               <div class="concept-item" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-top: 4px solid #f57c00;">
+                   <div class="concept-icon-wrap" style="background: #f57c00; color: white;">☀️</div>
+                   <h4 style="color: #e65100;">التبخّر</h4>
+                   <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">Evaporation</div>
+                   <p style="font-size: 0.9rem;">تحوّل الماء من سائل إلى غاز (بخار) بالحرارة</p>
+               </div>
+               
+               <div class="concept-item" style="background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); border-top: 4px solid #00838f;">
+                   <div class="concept-icon-wrap" style="background: #00838f; color: white;">❄️</div>
+                   <h4 style="color: #006064;">التجمّد</h4>
+                   <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">Freezing</div>
+                   <p style="font-size: 0.9rem;">تحوّل الماء من سائل إلى صلب (ثلج) بالبرودة</p>
+               </div>
+               
+               <div class="concept-item" style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-top: 4px solid #7b1fa2;">
+                   <div class="concept-icon-wrap" style="background: #7b1fa2; color: white;">🪨</div>
+                   <h4 style="color: #4a148c;">المخزور المسامية</h4>
+                   <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">Porous Rocks</div>
+                   <p style="font-size: 0.9rem;">صخور بها فراغات تسمح بتسرّب الماء كالإسفنج</p>
+               </div>
+               
+               <div class="concept-item" style="background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%); border-top: 4px solid var(--primary);">
+                   <div class="concept-icon-wrap" style="background: var(--primary); color: white;">💧</div>
+                   <h4 style="color: var(--primary);">المياه الجوفية</h4>
+                   <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">Groundwater</div>
+                   <p style="font-size: 0.9rem;">مياه تتجمّع تحت الأرض في الصخور المسامية</p>
+               </div>
+           </div>
+       </article>
+       
+   </main>
+   
+   <div class="results-panel" id="resultsPanel">
+       <div class="trophy" id="trophyIcon">🏆</div>
+       <h2 id="resultTitle">أحسنت!</h2>
+       <p id="resultMessage" style="font-size: 1.1rem; margin: 1rem 0; color: #666;"></p>
+       <div style="font-size: 3rem; font-weight: 800; color: var(--primary); margin: 1rem 0;" id="scoreDisplay"></div>
+       <button onclick="closeResults()" style="background: var(--primary); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-size: 1rem; cursor: pointer; margin-top: 1rem;">حاول مرة أخرى</button>
+   </div>
+   
+   <div class="nav-floating">
+       <button class="fab" onclick="window.print()" title="طباعة">🖨️</button>
+       <button class="fab" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="للأعلى">⬆️</button>
+   </div>
+
+   <script>
+       // Progress bar
+       window.addEventListener('scroll', () => {
+           const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+           const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+           const scrolled = (winScroll / height) * 100;
+           document.getElementById('progressBar').style.width = scrolled + '%';
+       });
+       
+       // Quiz functionality
+       document.querySelectorAll('.answer-option').forEach(option => {
+           option.addEventListener('click', function() {
+               const questionBlock = this.closest('.question-block');
+               const correct = questionBlock.dataset.correct;
+               const selected = this.dataset.value;
+               
+               // Disable all options in this question
+               questionBlock.querySelectorAll('.answer-option').forEach(opt => {
+                   opt.classList.add('disabled');
+               });
+               
+               // Mark correct and wrong
+               if (selected === correct) {
+                   this.classList.add('correct');
+               } else {
+                   this.classList.add('wrong');
+                   questionBlock.querySelector(`[data-value="${correct}"]`).classList.add('correct');
+               }
+           });
+       });
+       
+       function calculateScore() {
+           let score = 0;
+           const total = document.querySelectorAll('.question-block').length;
+           
+           document.querySelectorAll('.question-block').forEach(q => {
+               const correct = q.dataset.correct;
+               const selected = q.querySelector('.answer-option.correct:not(.wrong)');
+               if (selected && selected.dataset.value === correct) {
+                   score++;
+               }
+           });
+           
+           const percentage = Math.round((score / total) * 100);
+           const resultsPanel = document.getElementById('resultsPanel');
+           const trophyIcon = document.getElementById('trophyIcon');
+           const resultTitle = document.getElementById('resultTitle');
+           const resultMessage = document.getElementById('resultMessage');
+           const scoreDisplay = document.getElementById('scoreDisplay');
+           
+           scoreDisplay.textContent = `${score}/${total}`;
+           
+           if (percentage >= 80) {
+               trophyIcon.textContent = '🏆';
+               resultTitle.textContent = 'ممتاز! أنت عالم أغلفة الأرض!';
+               resultMessage.textContent = 'لقد أثبتت أنك تفهم نظام الأرض بعمق. استمر في حماية كوكبنا!';
+           } else if (percentage >= 60) {
+               trophyIcon.textContent = '🥈';
+               resultTitle.textContent = 'جيد جداً! أنت في الطريق الصحيح';
+               resultMessage.textContent = 'لديك معرفة جيدة، لكن يمكنك دائماً معرفة المزيد. راجع الدرس مرة أخرى!';
+           } else {
+               trophyIcon.textContent = '📚';
+               resultTitle.textContent = 'حاول مرة أخرى';
+               resultMessage.textContent = 'لا تقلق! العلم رحلة مستمرة. اقرأ الدرس مرة أخرى وحاول مرة ثانية.';
+           }
+           
+           resultsPanel.classList.add('show');
+       }
+       
+       function closeResults() {
+           document.getElementById('resultsPanel').classList.remove('show');
+           // Reset quiz
+           document.querySelectorAll('.answer-option').forEach(opt => {
+               opt.classList.remove('correct', 'wrong', 'disabled');
+           });
+       }
+       
+       // Discovery boxes toggle
+       document.querySelectorAll('.discovery-box').forEach(box => {
+           box.addEventListener('click', function() {
+               this.classList.toggle('active');
+           });
+       });
+       
+       // Detail popup function
+       function showDetail(type) {
+           const details = {
+               bio1: 'الإنسان: أنت جزء من الغلاف الحيوي! تتنفس الأكسجين وتشرب الماء وتأكل النباتات.',
+               bio2: 'الحيوانات: من الفيلة الصغيرة إلى الحيتان الضخمة، كلها تعتمد على الماء للعيش.',
+               bio3: 'النباتات: المصانع الخضراء التي تحول الماء وثاني أكسيد الكربون إلى غذاء وأكسجين!',
+               bio4: 'الكائنات الدقيقة: بكتيريا وفطريات تحلل الموتى وتعيد المواد للتربة.',
+               litho1: 'الجبال: تخزن الثلوج وتطلق المياه تدريجياً لتغذي الأنهار.',
+               litho2: 'الصخور المسامية: كالإسفنج تماماً! تمتص الماء وتخزنه تحت الأرض.',
+               litho3: 'المعادن: النحاس والحديد والفوسفور التي تحتاجها النباتات للنمو.',
+               litho4: 'المياه الجوفية: خزان ضخم تحت أقدامنا! نحفر الآبار لاستخراجه.'
+           };
+           alert(details[type] || 'معلومة مثيرة!');
+       }
+   </script>
+</body>
+</html>
