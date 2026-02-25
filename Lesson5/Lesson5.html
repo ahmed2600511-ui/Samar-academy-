@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الخامس: مغامرة في أعماق البحار - التنوع البيولوجي المائي</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+        
+        :root {
+            --somer-orange: #FF6B35;
+            --somer-red: #E63946;
+            --somer-gold: #FFD700;
+            --somer-blue: #1E3A8A;
+            --ocean-deep: #0D3B66;
+            --ocean-light: #1565C0;
+            --coral: #FF7F50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #E3F2FD 0%, #1565C0 50%, #0D3B66 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .ocean-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .bubble {
+            position: fixed;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            animation: rise 8s infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rise {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+        
+        .hero-ocean {
+            background: linear-gradient(135deg, var(--ocean-light), var(--ocean-deep));
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(13,59,102,0.4);
+            margin-bottom: 30px;
+            border: 5px solid var(--somer-gold);
+        }
+        
+        .hero-ocean::before {
+            content: '🐋';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            top: 20px;
+            right: 20px;
+            animation: swim 8s ease-in-out infinite;
+        }
+        
+        @keyframes swim {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            50% { transform: translateX(-50px) rotate(5deg); }
+        }
+        
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+            color: var(--somer-gold);
+        }
+        
+        .depth-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+            border-radius: 25px;
+            padding: 35px;
+            margin: 25px 0;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            border-right: 10px solid var(--coral);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .depth-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--somer-orange), var(--somer-gold));
+        }
+        
+        .depth-card h2 {
+            color: var(--ocean-deep);
+            font-size: 2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .depth-card p, .depth-card li {
+            color: #333;
+            line-height: 2;
+            font-size: 1.15em;
+            margin: 10px 0;
+        }
+        
+        .creature-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .creature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.4s;
+            cursor: pointer;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .creature-card:hover {
+            transform: translateY(-15px) rotate(2deg);
+            border-color: var(--somer-orange);
+            box-shadow: 0 20px 40px rgba(255,107,53,0.3);
+        }
+        
+        .creature-card .emoji {
+            font-size: 60px;
+            margin-bottom: 15px;
+            display: block;
+            transition: transform 0.3s;
+        }
+        
+        .creature-card:hover .emoji {
+            transform: scale(1.3) rotate(-10deg);
+        }
+        
+        .creature-card h3 {
+            color: var(--ocean-deep);
+            margin-bottom: 10px;
+        }
+        
+        .fact-bubble {
+            background: linear-gradient(135deg, var(--somer-gold), #FFA500);
+            color: var(--somer-dark);
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+            position: relative;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(255,215,0,0.3);
+        }
+        
+        .fact-bubble::before {
+            content: '⭐';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 30px;
+        }
+        
+        .ecosystem-game {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .food-chain {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+            font-size: 50px;
+        }
+        
+        .food-item {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            border-radius: 20px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid #4CAF50;
+        }
+        
+        .food-item:hover {
+            transform: scale(1.2);
+            background: #4CAF50;
+        }
+        
+        .arrow {
+            font-size: 40px;
+            color: var(--somer-orange);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        
+        .quiz-ocean {
+            background: linear-gradient(135deg, var(--ocean-deep), var(--somer-blue));
+            border-radius: 30px;
+            padding: 50px;
+            margin-top: 40px;
+            color: white;
+            border: 5px solid var(--somer-gold);
+        }
+        
+        .quiz-title {
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 40px;
+            color: var(--somer-gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .question-ocean {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+            border: 2px solid rgba(255,215,0,0.3);
+        }
+        
+        .question-ocean h3 {
+            color: var(--somer-gold);
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+        
+        .options-ocean {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .option-ocean {
+            background: rgba(255,255,255,0.9);
+            color: var(--ocean-deep);
+            padding: 18px 25px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-align: right;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .option-ocean:hover {
+            background: var(--somer-orange);
+            color: white;
+            transform: translateX(-10px);
+        }
+        
+        .option-ocean.correct {
+            background: #00C853;
+            color: white;
+        }
+        
+        .option-ocean.wrong {
+            background: #FF1744;
+            color: white;
+        }
+        
+        .score-ocean {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--somer-gold), #FFA000);
+            color: var(--somer-dark);
+            padding: 20px 30px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.3em;
+            box-shadow: 0 10px 30px rgba(255,215,0,0.5);
+            z-index: 100;
+            border: 3px solid white;
+        }
+        
+        .diver-mascot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 80px;
+            animation: dive 3s ease-in-out infinite;
+            cursor: pointer;
+            z-index: 100;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+        
+        @keyframes dive {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(-10deg); }
+        }
+        
+        .speech-ocean {
+            position: fixed;
+            bottom: 130px;
+            right: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 25px;
+            border: 4px solid var(--somer-orange);
+            max-width: 280px;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            font-weight: bold;
+            color: var(--ocean-deep);
+        }
+        
+        .speech-ocean::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: 40px;
+            border: 10px solid transparent;
+            border-top-color: var(--somer-orange);
+        }
+        
+        .treasure-chest {
+            background: linear-gradient(135deg, var(--somer-gold), #FF8F00);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin: 30px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 5px solid var(--somer-red);
+        }
+        
+        .treasure-chest:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+        
+        .treasure-chest h3 {
+            color: var(--somer-dark);
+            font-size: 1.5em;
+        }
+        
+        .hidden-fact {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            color: var(--ocean-deep);
+        }
+    </style>
+</head>
+<body>
+    <div class="score-ocean">🏆 النقاط: <span id="scoreOcean">0</span>/25</div>
+    
+    <div class="diver-mascot" onclick="toggleDiver()">🤿</div>
+    <div class="speech-ocean" id="speechOcean">
+        أهلاً! أنا غواص عبقري! سأصطحبك في رحلة إلى أعماق البحار لاكتشف أسرار التنوع البيولوجي!
+    </div>
+
+    <div class="ocean-container">
+        <div class="hero-ocean">
+            <h1>🌊 الدرس الخامس: مغامرة في أعماق البحار</h1>
+            <div style="font-size: 1.4em; background: rgba(255,255,255,0.2); padding: 15px 30px; border-radius: 50px; display: inline-block;">
+                التنوع البيولوجي المائي - عالم الكائنات البحرية الرائعة
+            </div>
+        </div>
+
+        <div class="depth-card">
+            <h2>🦈 الفصل الأول: سلسلة الغذاء البحرية</h2>
+            <p>
+                في أعماق المحيط، هناك <strong>سلسلة غذائية</strong> مثل سلسلة ذهبية! كل كائن يأكل الكائن الأصغر منه، ويأكله الكائن الأكبر:
+            </p>
+            
+            <div class="food-chain">
+                <div class="food-item" onclick="showCreatureInfo('phytoplankton')">🌿</div>
+                <div class="arrow">➡️</div>
+                <div class="food-item" onclick="showCreatureInfo('zooplankton')">🦐</div>
+                <div class="arrow">➡️</div>
+                <div class="food-item" onclick="showCreatureInfo('smallfish')">🐟</div>
+                <div class="arrow">➡️</div>
+                <div class="food-item" onclick="showCreatureInfo('bigfish')">🦈</div>
+            </div>
+            
+            <div class="fact-bubble">
+                💡 هل تعلم؟ العوالق النباتية (الأخضر) تصنع غذاءها من الشمس، وهي بداية كل حياة بحرية!
+            </div>
+        </div>
+
+        <div class="depth-card">
+            <h2>🐙 الفصل الثاني: سكان الأعماق</h2>
+            <p>لنلتقي ببعض سكان المحيط المذهلين:</p>
+            
+            <div class="creature-showcase">
+                <div class="creature-card" onclick="revealFact(this)">
+                    <span class="emoji">🐡</span>
+                    <h3>سمكة البفرة</h3>
+                    <p>تنتفخ كالبالون!</p>
+                    <div class="hidden-fact">تستطيع تضخيم حجمها 3 أضعاف لتخيف الأعداء!</div>
+                </div>
+                
+                <div class="creature-card" onclick="revealFact(this)">
+                    <span class="emoji">🐢</span>
+                    <h3>السلحفاة البحرية</h3>
+                    <p>السباحة الماهرة</p>
+                    <div class="hidden-fact">تعيش أكثر من 100 سنة وتسافر آلاف الكيلومترات!</div>
+                </div>
+                
+                <div class="creature-card" onclick="revealFact(this)">
+                    <span class="emoji">🦑</span>
+                    <h3>الحبار العملاق</h3>
+                    <p>ملك الأعماق</p>
+                    <div class="hidden-fact">أعينه بحجم طبق العشاء!</div>
+                </div>
+                
+                <div class="creature-card" onclick="revealFact(this)">
+                    <span class="emoji">🐠</span>
+                    <h3>سمكة المهرج</h3>
+                    <p>الملونة الجميلة</p>
+                    <div class="hidden-fact">تعيش بين شعاب المرجانية وتحميها!</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="depth-card">
+            <h2>🪸 الفصل الثالث: شعاب المرجانية - غابات البحار</h2>
+            <p>
+                <strong>الشعاب المرجانية</strong> هي بيوت صغيرة لآلاف الكائنات! رغم أنها تبدو كالنباتات، إلا أنها في الحقيقة <strong>حيوانات</strong> صغيرة تبني بيوتاً من الحجر!
+            </p>
+            <p>
+                في البحر الأحمر، توجد شعاب مرجانية ملونة تسمى <strong>"الجاردن"</strong> (الحديقة). تعيش فيها:
+            </p>
+            <ul style="margin-right: 30px; color: #333;">
+                <li>🐠 أسماك ملونة بألوان قوس قزح</li>
+                <li>🦀 سرطانات صغيرة تختبئ في الشقوق</li>
+                <li>⭐ نجوم بحرية بطيئة الحركة</li>
+                <li>🐙 أخطبوطات ذكية تغير لونها</li>
+            </ul>
+            
+            <div class="fact-bubble">
+                ⚠️ تحذير: الشعاب المرجانية حساسة جداً! لمسها يؤذيها. انظر فقط ولا تلمس!
+            </div>
+        </div>
+
+        <div class="depth-card">
+            <h2>🌡️ الفصل الرابع: التكيف مع البيئة</h2>
+            <p>
+                كيف تعيش هذه الكائنات في ظروف صعبة؟
+            </p>
+            <p>
+                <strong>التكيف</strong> يعني تغيير الجسم للعيش في بيئة معينة:
+            </p>
+            <p>
+                • <strong>السمك في الأعماق:</strong> لديه أضواء خاصة لأن الظلام دائم!<br>
+                • <strong>الدلفين:</strong> يستخدم الصدى للتنقل (السونار) لأنه لا يرى في الماء العكر.<br>
+                • <strong>سمكة المهرج:</strong> ت secretes سماً لتحمي نفسها من الأعداء.
+            </p>
+            
+            <div class="treasure-chest" onclick="openTreasure(this)">
+                <h3>🎁 اضغط لفتح صندوق الكنز!</h3>
+                <div class="hidden-fact">
+                    💎 سر الكنز: التنوع البيولوجي يعني وجود أنواع كثيرة من الكائنات. كلما زاد التنوع، زاد صحة البيئة!
+                </div>
+            </div>
+        </div>
+
+        <div class="depth-card">
+            <h2>⚖️ الفصل الخامس: التوازن البيئي</h2>
+            <p>
+                ماذا يحدث إذا اختفى نوع واحد من السلسلة الغذائية؟
+            </p>
+            <p>
+                تخيل: إذا ماتت العوالق النباتية (🌿)، فستموت العوالق الحيوانية (🦐)، ثم الأسماك الصغيرة (🐟)، ثم الكبيرة (🦈)! 
+                هذا يسمى <strong>اختلال التوازن البيئي</strong>.
+            </p>
+            <p>
+                <strong>مثال حقيقي:</strong> عندما يصطاد الناس أسماك القرش بكثرة، تزداد أسماك صغيرة تأكل العوالق، فيقل الغذاء للجميع!
+            </p>
+        </div>
+
+        <div class="quiz-ocean">
+            <h2 class="quiz-title">🧩 تحدي أعماق البحار - 25 سؤالاً</h2>
+            <div id="quizOceanContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        let scoreOcean = 0;
+        let answeredOcean = 0;
+        
+        const questionsOcean = [
+            {q: "ما هي بداية السلسلة الغذائية البحرية؟", options: ["العوالق النباتية", "القرش", "الحوت"], correct: 0},
+            {q: "ما هو لون شعاب المرجانية في البحر الأحمر؟", options: ["رمادية فقط", "ملونة بألوان متعددة", "سوداء"], correct: 1},
+            {q: "كيف تحمي سمكة البفرة نفسها؟", options: ["بالسباحة السريعة", "بالانتفاخ كالبالون", "بالعض"], correct: 1},
+            {q: "الشعاب المرجانية هي:", options: ["نباتات", "حيوانات", "صخور"], correct: 1},
+            {q: "ماذا يستخدم الدلفين للتنقل في الماء؟", options: ["الصدى (السونار)", "العيون فقط", "الريحة"], correct: 0},
+            {q: "كم تعيش السلحفاة البحرية تقريباً؟", options: ["10 سنوات", "50 سنة", "أكثر من 100 سنة"], correct: 2},
+            {q: "ماذا يحدث إذا اختفى نوع من السلسلة الغذائية؟", options: ["لا شيء", "اختلال التوازن البيئي", "زيادة الأسماك"], correct: 1},
+            {q: "أين تعيش سمكة المهرج؟", options: ["في الصحراء", "بين شعاب المرجانية", "في القطب"], correct: 1},
+            {q: "العوالق النباتية تصنع غذاءها من:", options: ["الشمس", "اللحم", "التراب"], correct: 0},
+            {q: "لماذا لمس الشعاب المرجانية ضار؟", options: ["لأنها حساسة", "لأنها سامة", "لأنها باردة"], correct: 0},
+            {q: "ماذا يأكل القرش؟", options: ["العوالق فقط", "الأسماك الصغيرة", "النباتات"], correct: 1},
+            {q: "كيف يتنفس السمك تحت الماء؟", options: ["بالرئتين", "بالخياشيم", "بالجلد"], correct: 1},
+            {q: "ما هو التنوع البيولوجي؟", options: ["وجود أنواع كثيرة", "وجود نوع واحد", "عدم وجود حياة"], correct: 0},
+            {q: "الحبار العملاق يعيش في:", options: ["الأعماق", "السطح", "البر"], correct: 0},
+            {q: "ماذا تفعل نجوم البحر؟", options: ["تسبح سريعاً", "تتحرك ببطء", "تطير"], correct: 1},
+            {q: "لماذا يتغير لون الأخطبوط؟", options: ["للتمويه والحماية", "للزينة", "للدفء"], correct: 0},
+            {q: "ما هي وظيفة السلحفاة البحرية في البيئة؟", options: ["تأكل العوالق والحفاظ على التوازن", "تؤذي الشعاب", "لا فائدة منها"], correct: 0},
+            {q: "ماذا يحدث إذا صطاد الناس أسماك القرش بكثرة؟", options: ["زيادة الأسماك الصغيرة", "لا شيء", "نفوق جميع الأسماك"], correct: 0},
+            {q: "أي من هذه ليست من سكان الشعاب المرجانية؟", options: ["سمكة المهرج", "الأسد", "السرطان"], correct: 1},
+            {q: "كيف تبني الشعاب المرجانية بيوتها؟", options: ["من الحجر الجيري", "من الرمل", "من الخشب"], correct: 0},
+            {q: "ما هو اسم السلسلة التي ينتقل فيها الغذاء؟", options: ["السلسلة الغذائية", "السلسلة الذهبية", "السلسلة المعدنية"], correct: 0},
+            {q: "لماذا يعيش الحبار في الأعماق؟", options: ["للحماية من الأعداء", "لأنه يحب الظلام", "للدفء"], correct: 0},
+            {q: "ماذا يأكل الحبار العملاق؟", options: ["الأسماك والكائنات الصغيرة", "النباتات فقط", "التراب"], correct: 0},
+            {q: "ما هو تأثير اختفاء العوالق النباتية؟", options: ["موت جميع الكائنات في السلسلة", "لا تأثير", "زيادة القروش"], correct: 0},
+            {q: "كيف نحمي التنوع البيولوجي البحري؟", options: ["بعدم الإفراط في الصيد وعدم تلوث الماء", "بصيد جميع الأسماك", "برمي القمامة في البحر"], correct: 0}
+        ];
+
+        function loadOceanQuiz() {
+            const container = document.getElementById('quizOceanContainer');
+            
+            questionsOcean.forEach((q, index) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'question-ocean';
+                qDiv.innerHTML = `
+                    <h3>🌊 السؤال ${index + 1}: ${q.q}</h3>
+                    <div class="options-ocean">
+                        ${q.options.map((opt, i) => `
+                            <button class="option-ocean" onclick="checkOceanAnswer(${index}, ${i}, this)">${opt}</button>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(qDiv);
+            });
+        }
+
+        function checkOceanAnswer(qIndex, optIndex, btn) {
+            const correct = questionsOcean[qIndex].correct;
+            const buttons = btn.parentElement.querySelectorAll('.option-ocean');
+            
+            buttons.forEach(b => b.disabled = true);
+            
+            if (optIndex === correct) {
+                btn.classList.add('correct');
+                scoreOcean++;
+                document.getElementById('scoreOcean').textContent = scoreOcean;
+                createBubbles(10);
+            } else {
+                btn.classList.add('wrong');
+                buttons[correct].classList.add('correct');
+            }
+            
+            answeredOcean++;
+            
+            if (answeredOcean === 25) {
+                setTimeout(() => {
+                    let msg = scoreOcean >= 20 ? '🏆 ممتاز! أنت خبير في علوم البحار!' : 
+                              scoreOcean >= 15 ? '👍 جيد! استمر في التعلم!' : 
+                              '📚 حاول مرة أخرى لتتعلم أكثر!';
+                    alert(`${msg}\nنقاطك: ${scoreOcean}/25`);
+                }, 500);
+            }
+        }
+
+        function createBubbles(count) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const bubble = document.createElement('div');
+                    bubble.className = 'bubble';
+                    bubble.style.left = Math.random() * 100 + '%';
+                    bubble.style.width = bubble.style.height = (Math.random() * 40 + 10) + 'px';
+                    bubble.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                    document.body.appendChild(bubble);
+                    setTimeout(() => bubble.remove(), 8000);
+                }, i * 200);
+            }
+        }
+
+        function toggleDiver() {
+            const speech = document.getElementById('speechOcean');
+            speech.style.display = speech.style.display === 'none' || speech.style.display === '' ? 'block' : 'none';
+        }
+
+        function revealFact(card) {
+            const fact = card.querySelector('.hidden-fact');
+            fact.style.display = fact.style.display === 'none' || fact.style.display === '' ? 'block' : 'none';
+            card.style.background = '#E8F5E9';
+        }
+
+        function openTreasure(chest) {
+            const fact = chest.querySelector('.hidden-fact');
+            fact.style.display = 'block';
+            chest.style.transform = 'scale(1.1) rotate(5deg)';
+            createBubbles(20);
+        }
+
+        function showCreatureInfo(creature) {
+            const info = {
+                phytoplankton: 'العوالق النباتية: مصنع الطعام البحري! تحول ضوء الشمس إلى غذاء',
+                zooplankton: 'العوالق الحيوانية: تأكل النباتات وتنتقل الطاقة للأسماك',
+                smallfish: 'الأسماك الصغيرة: حلقة مهمة في السلسلة، تأكل العوالق وتأكلها الأسماك الكبيرة',
+                bigfish: 'الأسماك الكبيرة: قمة السلسلة في منطقتها، لكنها أيضاً تأكلها حيوانات أكبر!'
+            };
+            alert(info[creature]);
+        }
+
+        loadOceanQuiz();
+        
+        setInterval(() => createBubbles(1), 3000);
+        
+        setTimeout(() => {
+            document.getElementById('speechOcean').style.display = 'block';
+            setTimeout(() => document.getElementById('speechOcean').style.display = 'none', 6000);
+        }, 1500);
+    </script>
+</body>
+</html>
