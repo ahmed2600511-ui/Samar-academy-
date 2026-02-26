@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكاديمية سمر - لوحة الأبطال</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+        
+        :root {
+            --primary: #1a237e;
+            --accent: #ffd700;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --gold-grad: linear-gradient(135deg, #ffd700 0%, #ffb300 100%);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Tajawal', sans-serif; 
+            background: var(--bg); 
+            color: #333; 
+            padding-bottom: 30px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #3949ab 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .container { max-width: 600px; margin: -20px auto 20px; padding: 0 20px; }
+
+        /* ستايل زرار الاختبار "العالي" */
+        .quiz-hero-card {
+            background: var(--gold-grad);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #432c00;
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+            border: 3px solid #fff;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .quiz-hero-card:hover { transform: scale(1.02); }
+
+        .quiz-hero-icon {
+            font-size: 3rem;
+            margin-left: 20px;
+            filter: drop-shadow(2px 2px 0px #fff);
+        }
+
+        .quiz-hero-info h2 { font-weight: 900; font-size: 1.4rem; margin-bottom: 5px; }
+        .quiz-hero-info p { font-size: 0.95rem; font-weight: bold; opacity: 0.9; }
+
+        .section-title { margin: 25px 0 15px; font-weight: 900; color: var(--primary); font-size: 1.3rem; display: flex; align-items: center; }
+        .section-title::before { content: "📚"; margin-left: 10px; }
+
+        /* ستايل كروت الدروس العادية */
+        .lesson-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .lesson-card:hover { transform: translateX(-5px); background: #f0f2ff; }
+
+        .lesson-icon {
+            width: 55px;
+            height: 55px;
+            background: #e8eaf6;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-left: 15px;
+        }
+
+        .lesson-info h3 { color: var(--primary); font-size: 1.1rem; margin-bottom: 3px; }
+        .lesson-info p { font-size: 0.85rem; color: #666; }
+
+        .badge {
+            background: #eee;
+            color: #777;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+        .status-done { background: #d4edda; color: #155724; }
+
+        .footer-note { text-align: center; margin-top: 40px; font-size: 0.8rem; color: #888; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🌟 أكاديمية سمر</h1>
+        <p style="margin-top: 10px; opacity: 0.9;">أهلاً بك يا بطل العلوم!</p>
+    </header>
+
+    <div class="container">
+        
+        <a href="quiz/index.html" class="quiz-hero-card">
+            <div class="quiz-hero-icon">🏆</div>
+            <div class="quiz-hero-info">
+                <h2>التحدي النهائي الشامل</h2>
+                <p>اختبر معلوماتك في الدروس الخمسة واربح الوسام الذهبي!</p>
+            </div>
+        </a>
+
+        <h2 class="section-title">رحلة التعلم</h2>
+
+        <a href="lesson1/index.html" class="lesson-card">
+            <div class="lesson-icon">🌍</div>
+            <div class="lesson-info">
+                <h3>الدرس الأول: أنظمة الأرض</h3>
+                <span class="badge status-done">تم الإكمال ✅</span>
+            </div>
+        </a>
+
+        <a href="lesson2/index.html" class="lesson-card">
+            <div class="lesson-icon">💧</div>
+            <div class="lesson-info">
+                <h3>الدرس الثاني: الماء والحياة</h3>
+                <span class="badge status-done">تم الإكمال ✅</span>
+            </div>
+        </a>
+
+        <a href="lesson3/index.html" class="lesson-card">
+            <div class="lesson-icon">💎</div>
+            <div class="lesson-info">
+                <h3>الدرس الثالث: أسرار الأرض</h3>
+                <span class="badge status-done">تم الإكمال ✅</span>
+            </div>
+        </a>
+
+        <a href="lesson4/index.html" class="lesson-card">
+            <div class="lesson-icon">♻️</div>
+            <div class="lesson-info">
+                <h3>الدرس الرابع: رحلة الماء السحري</h3>
+                <span class="badge status-done">تم الإكمال ✅</span>
+            </div>
+        </a>
+
+        <a href="lesson5/index.html" class="lesson-card">
+            <div class="lesson-icon">🦒</div>
+            <div class="lesson-info">
+                <h3>الدرس الخامس: أعماق البحار</h3>
+                <span class="badge status-done">تم الإكمال ✅</span>
+            </div>
+        </a>
+
+        <p class="footer-note">صُنع بكل حب لدعم أبطال سمر أكاديمي ❤️</p>
+    </div>
+
+</body>
+</html>
